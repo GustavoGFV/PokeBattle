@@ -97,7 +97,7 @@ export const en = {
   'footer.about': 'Poke Battle is a non-profit, automated fan-made Pokémon battle simulator.',
   'footer.sprites': 'Sprites by PMD SpriteCollab, licensed under',
   'footer.legal':
-    'Pokémon and all respective names are trademark & © of Nintendo 1996–2026. This project is strictly for entertainment purposes and is not affiliated with, endorsed by, or sponsored by Nintendo / Game Freak / The Pokémon Company.',
+    "Pokémon and all respective names are trademark & © of Nintendo, Creatures Inc. and Game Freak 1996–2026. The source code of this project is the work of its author and does not include or claim any rights over those materials. This project is strictly for entertainment purposes and is not affiliated with, endorsed by, or sponsored by Nintendo / Game Freak / The Pokémon Company.",
 
   // Menu
   'menu.regionOption': '{region} Region',

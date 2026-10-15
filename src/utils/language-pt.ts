@@ -97,7 +97,7 @@ export const pt: Dictionary = {
   'footer.about': 'Poke Battle é um simulador de batalhas Pokémon automático, feito por fã e sem fins lucrativos.',
   'footer.sprites': 'Sprites por PMD SpriteCollab, licenciados sob',
   'footer.legal':
-    'Pokémon e todos os nomes respectivos são marcas registradas e © da Nintendo 1996–2026. Este projeto é estritamente para entretenimento e não é afiliado, endossado ou patrocinado pela Nintendo / Game Freak / The Pokémon Company.',
+    'Pokémon e todos os nomes respectivos são marcas registradas e © da Nintendo, Creatures Inc. e Game Freak 1996–2026. O código-fonte deste projeto é obra do autor e não inclui nem reivindica direitos sobre esses materiais. Este projeto é estritamente para entretenimento e não é afiliado, endossado ou patrocinado pela Nintendo / Game Freak / The Pokémon Company.',
 
   // Menu
   'menu.regionOption': 'Região {region}',
