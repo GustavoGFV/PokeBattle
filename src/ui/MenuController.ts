@@ -9,6 +9,7 @@ import { loadSavedCustomTrainers, saveCustomTrainer, deleteCustomTrainer } from 
 import { getTrainerPatternType } from '../domain/trainerPatterns.ts'
 import { loadScore } from '../game/score.ts'
 import { AboutTab } from './AboutTab.ts'
+import { t } from '../utils/i18n.ts'
 
 interface AppearanceOption {
   shape: TrainerShape
@@ -171,12 +172,12 @@ export class MenuController {
   }
 
   private getAppearanceOptions(): AppearanceOption[] {
-    return this.trainers.map((t) => ({
-      shape: t.shape,
-      color: t.color,
-      accent: t.accent,
-      label: `Trainer ${t.name}`,
-      sprite: t.sprite || t.name,
+    return this.trainers.map((tr) => ({
+      shape: tr.shape,
+      color: tr.color,
+      accent: tr.accent,
+      label: t('menu.trainerLabel', { name: tr.name }),
+      sprite: tr.sprite || tr.name,
     }))
   }
 
@@ -187,7 +188,7 @@ export class MenuController {
 
     const availableRegions = Array.from(new Set(this.trainers.map((t) => t.region || 'Unknown')))
     const regionOptions = availableRegions
-      .map((r) => `<option value="${r}">${r} Region</option>`)
+      .map((r) => `<option value="${r}">${t('menu.regionOption', { region: r })}</option>`)
       .join('')
 
     this.root.innerHTML = `
@@ -208,14 +209,14 @@ export class MenuController {
             <div class="hero-pokeball hero-pokeball--7">${renderPokeballSvg('pokeball')}</div>
           </div>
           <div class="hero-grid" aria-hidden="true"></div>
-          <div class="hero-edition">POKÉ BATTLE <span>NO. 01</span></div>
+          <div class="hero-edition">POKÉ BATTLE <span>${t('menu.heroNo')}</span></div>
           <h1 class="hero-title" id="hero-title"><span>POKÉ</span><span>BATTLE</span></h1>
-          <div class="hero-foot"><span>POKÉMON LEAGUE / TRAINER BATTLE CIRCUIT</span><a href="#competitor-section" class="hero-cta" data-action="go-to-trainers">CHOOSE YOUR TRAINER <b>↓</b></a></div>
+          <div class="hero-foot"><span>${t('menu.heroTagline')}</span><a href="#competitor-section" class="hero-cta" data-action="go-to-trainers">${t('menu.heroCta')} <b>↓</b></a></div>
           <div class="hero-index" aria-hidden="true">01<br>—<br>06</div>
         </section>
 
         <!-- Main Menu Navigation Tabs -->
-        <nav class="menu-tabs-bar" role="tablist" aria-label="Main menu navigation">
+        <nav class="menu-tabs-bar" role="tablist" aria-label="${t('menu.navLabel')}">
           <button
             type="button"
             class="menu-tab-btn ${this.activeMenuTab === 'trainers' ? 'is-active' : ''}"
@@ -224,7 +225,7 @@ export class MenuController {
             data-menu-tab="trainers"
           >
             <span class="tab-badge" aria-hidden="true">⚡</span>
-            <span>BATTLE CIRCUIT</span>
+            <span>${t('menu.tabCircuit')}</span>
           </button>
           <button
             type="button"
@@ -234,7 +235,7 @@ export class MenuController {
             data-menu-tab="about"
           >
             <span class="tab-badge" aria-hidden="true">ℹ️</span>
-            <span>ABOUT PROJECT</span>
+            <span>${t('menu.tabAbout')}</span>
           </button>
         </nav>
 
@@ -242,13 +243,13 @@ export class MenuController {
         <div class="menu-tab-panel" id="trainers-tab-panel" ${this.activeMenuTab !== 'trainers' ? 'hidden' : ''}>
           <section class="competitor-section" id="competitor-section" aria-labelledby="competitor-heading">
             <div class="menu-section-heading">
-              <div><span class="section-kicker">THE ROSTER DESK</span><h2 id="competitor-heading">Choose a Trainer</h2></div>
+              <div><span class="section-kicker">${t('menu.rosterKicker')}</span><h2 id="competitor-heading">${t('menu.chooseTrainer')}</h2></div>
               <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-                <div class="menu-record-badge" aria-label="Player career match record">
-                  <span>CAREER:</span>
-                  <strong><b class="wins">${score.wins} W</b> / <b class="losses">${score.losses} L</b></strong>
+                <div class="menu-record-badge" aria-label="${t('menu.recordAria')}">
+                  <span>${t('menu.career')}</span>
+                  <strong><b class="wins">${t('menu.winsShort', { n: score.wins })}</b> / <b class="losses">${t('menu.lossesShort', { n: score.losses })}</b></strong>
                 </div>
-                <span class="section-count">${this.trainers.length + this.savedTrainers.length} TRAINERS <b>+</b> CUSTOM</span>
+                <span class="section-count">${t('menu.trainersCount', { n: this.trainers.length + this.savedTrainers.length })} <b>+</b> ${t('menu.customUpper')}</span>
               </div>
             </div>
 
@@ -257,18 +258,18 @@ export class MenuController {
                 type="text"
                 class="menu-search-input"
                 data-filter="trainer-search"
-                placeholder="Search trainers by name or title..."
+                placeholder="${t('menu.searchTrainersPlaceholder')}"
                 value="${escapeAttribute(this.trainerSearchQuery)}"
-                aria-label="Search trainers by name"
+                aria-label="${t('menu.searchTrainersAria')}"
               />
-              <select class="menu-region-select" data-filter="trainer-region" aria-label="Filter trainers by region">
-                <option value="all">All Regions (${availableRegions.join(', ')})</option>
+              <select class="menu-region-select" data-filter="trainer-region" aria-label="${t('menu.filterTrainersAria')}">
+                <option value="all">${t('menu.allRegionsList', { regions: availableRegions.join(', ') })}</option>
                 ${regionOptions}
               </select>
             </div>
 
             <div class="trainers-container" id="trainers-container"></div>
-            <div class="menu-bottom-line"><span>SELECT A CARD TO REVIEW THE LINEUP</span><span>DRAG POKÉMON CARDS TO REORDER</span></div>
+            <div class="menu-bottom-line"><span>${t('menu.bottomSelect')}</span><span>${t('menu.bottomDrag')}</span></div>
           </section>
         </div>
 
@@ -567,8 +568,8 @@ export class MenuController {
     if (filtered.length === 0) {
       container.innerHTML = `
         <div class="trainers-empty-state">
-          <p>No trainers found matching "${escapeAttribute(this.trainerSearchQuery)}".</p>
-          <small>Try adjusting your search terms or clearing the region filter.</small>
+          <p>${t('menu.noTrainers', { query: escapeAttribute(this.trainerSearchQuery) })}</p>
+          <small>${t('menu.noTrainersHint')}</small>
         </div>
       `
       return
@@ -600,11 +601,11 @@ export class MenuController {
         const patternClass = getTrainerPatternType(trainer)
         return `
           <button class="competitor-card competitor-card--saved" type="button" data-competitor-id="${trainer.id}" style="--competitor-color:${trainer.color};--competitor-accent:${trainer.accent}">
-            <span class="competitor-card-top"><span class="competitor-card-badge">SAVED CUSTOM</span><span>CUSTOM</span></span>
+            <span class="competitor-card-top"><span class="competitor-card-badge">${t('menu.savedCustom')}</span><span>${t('menu.customUpper')}</span></span>
             <span class="competitor-art competitor-art--${trainer.shape} pattern-${patternClass}">
               ${trainer.sprite ? this.getTrainerPortraitHtml(trainer.sprite) : '<span></span>'}
             </span>
-            <span class="competitor-card-bottom"><strong>${escapeAttribute(trainer.name)}</strong><span>${trainer.roster.length} POKÉMON <b>↗</b></span></span>
+            <span class="competitor-card-bottom"><strong>${escapeAttribute(trainer.name)}</strong><span>${t('menu.pokemonCount', { n: trainer.roster.length })} <b>↗</b></span></span>
           </button>
         `
       })
@@ -612,15 +613,15 @@ export class MenuController {
       htmlParts.push(`
         <div class="region-group">
           <div class="region-divider">
-            <span class="region-badge">CUSTOM ARENA TEAM</span>
+            <span class="region-badge">${t('menu.customArenaTeam')}</span>
             <span class="region-line"></span>
-            <span class="region-count">${1 + savedFiltered.length} CUSTOM SLOTS</span>
+            <span class="region-count">${t('menu.customSlots', { n: 1 + savedFiltered.length })}</span>
           </div>
           <div class="competitor-grid">
             <button class="competitor-card competitor-card--custom" type="button" data-competitor-id="custom">
-              <span class="competitor-card-top"><span>BUILD YOUR OWN</span><span>CUSTOM</span></span>
+              <span class="competitor-card-top"><span>${t('menu.buildYourOwn')}</span><span>${t('menu.customUpper')}</span></span>
               <span class="custom-card-art"><span>+</span></span>
-              <span class="competitor-card-bottom"><strong>Create Custom</strong><span>YOUR TEAM, YOUR CALL <b>↗</b></span></span>
+              <span class="competitor-card-bottom"><strong>${t('menu.createCustom')}</strong><span>${t('menu.yourTeamYourCall')} <b>↗</b></span></span>
             </button>
             ${savedCards.join('')}
           </div>
@@ -638,16 +639,16 @@ export class MenuController {
           <span class="competitor-art competitor-art--${trainer.shape} pattern-${patternClass}">
             ${trainer.sprite ? this.getTrainerPortraitHtml(trainer.sprite) : '<span></span>'}
           </span>
-          <span class="competitor-card-bottom"><strong>${trainer.name}</strong><span>${trainer.roster.length} POKÉMON <b>↗</b></span></span>
+          <span class="competitor-card-bottom"><strong>${trainer.name}</strong><span>${t('menu.pokemonCount', { n: trainer.roster.length })} <b>↗</b></span></span>
         </button>
       `})
 
       htmlParts.push(`
         <div class="region-group">
           <div class="region-divider">
-            <span class="region-badge">${region.toUpperCase()} REGION</span>
+            <span class="region-badge">${t('menu.regionUpper', { region: region.toUpperCase() })}</span>
             <span class="region-line"></span>
-            <span class="region-count">${trainersInRegion.length} TRAINERS</span>
+            <span class="region-count">${t('menu.trainersCount', { n: trainersInRegion.length })}</span>
           </div>
           <div class="competitor-grid">
             ${cards.join('')}
@@ -820,7 +821,7 @@ export class MenuController {
         const btn = this.root.querySelector<HTMLButtonElement>('#save-trainer-btn')
         if (btn) {
           btn.classList.add('is-saved')
-          btn.innerHTML = `<span aria-hidden="true">✓</span> SAVED`
+          btn.innerHTML = `<span aria-hidden="true">✓</span> ${t('menu.saved')}`
           setTimeout(() => {
             if (btn) {
               btn.classList.remove('is-saved')
@@ -828,7 +829,7 @@ export class MenuController {
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                   <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM5 5v14h14V8.5L15.5 5H5zm2 1h7v4H7V6zm0 8h10v4H7v-4z"/>
                 </svg>
-                SAVE
+                ${t('menu.save')}
               `
             }
           }, 1200)
@@ -873,11 +874,11 @@ export class MenuController {
                 </span>
                 <div><span class="section-kicker">${trainer.title} · ${trainer.region.toUpperCase()}</span><h2 id="dialog-title">${trainer.name}</h2></div>
               </div>
-              <div class="dialog-tools">${this.renderOpponentSelector(trainer)}<button class="icon-close" type="button" aria-label="Close" data-action="close">×</button></div>
+              <div class="dialog-tools">${this.renderOpponentSelector(trainer)}<button class="icon-close" type="button" aria-label="${t('menu.close')}" data-action="close">×</button></div>
             </header>
-            <div class="dialog-versus"><span>YOUR TEAM</span><span>SELECT YOUR OPPONENT</span></div>
+            <div class="dialog-versus"><span>${t('menu.yourTeam')}</span><span>${t('menu.selectOpponent')}</span></div>
             <div class="team-grid team-grid--preset">${this.activeRoster.map((id, index) => this.renderCreatureCard(id, index, false)).join('')}</div>
-            <footer class="dialog-footer"><span>DRAG TO REORDER YOUR FIELD CALLS</span><button class="play-button" type="button" data-action="play">PLAY MATCH <b>→</b></button></footer>
+            <footer class="dialog-footer"><span>${t('menu.dragReorder')}</span><button class="play-button" type="button" data-action="play">${t('menu.playMatch')} <b>→</b></button></footer>
           </section>
         </div>
       `
@@ -889,7 +890,7 @@ export class MenuController {
       shape: 'circle' as TrainerShape,
       color: '#e53e3e',
       accent: '#f6e05e',
-      label: 'Trainer',
+      label: t('menu.trainer'),
     }
     const customTrainer = this.createCustomTrainer()
     const roster = this.customRoster
@@ -900,32 +901,32 @@ export class MenuController {
         <section class="team-dialog custom-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" data-dialog>
           <header class="dialog-heading">
             <div class="custom-identity" style="--competitor-color:${appearance.color};--competitor-accent:${appearance.accent}">
-              <button class="appearance-arrow" type="button" aria-label="Previous appearance" data-action="previous-appearance" ${isLocked ? 'disabled' : ''}>←</button>
+              <button class="appearance-arrow" type="button" aria-label="${t('menu.prevAppearance')}" data-action="previous-appearance" ${isLocked ? 'disabled' : ''}>←</button>
               <span class="competitor-art competitor-art--${appearance.shape} pattern-${patternClass}">
                 ${appearance.sprite ? this.getTrainerPortraitHtml(appearance.sprite) : '<span></span>'}
               </span>
-              <button class="appearance-arrow" type="button" aria-label="Next appearance" data-action="next-appearance" ${isLocked ? 'disabled' : ''}>→</button>
+              <button class="appearance-arrow" type="button" aria-label="${t('menu.nextAppearance')}" data-action="next-appearance" ${isLocked ? 'disabled' : ''}>→</button>
               <div class="identity-copy">
-                <span class="section-kicker">${isLocked ? 'SAVED TRAINER (LOCKED IDENTITY)' : `CUSTOM TRAINER / ${appearance.label}`}</span>
+                <span class="section-kicker">${isLocked ? t('menu.savedLocked') : t('menu.customTrainerLabel', { label: appearance.label })}</span>
                 <h2 id="dialog-title">${escapeAttribute(this.customName)}</h2>
-                <input class="custom-name-input" type="text" data-field="custom-name" value="${escapeAttribute(this.customName)}" maxlength="24" aria-label="Custom trainer name" placeholder="Enter trainer name" ${isLocked ? 'disabled readonly' : ''}>
+                <input class="custom-name-input" type="text" data-field="custom-name" value="${escapeAttribute(this.customName)}" maxlength="24" aria-label="${t('menu.customNameAria')}" placeholder="${t('menu.customNamePlaceholder')}" ${isLocked ? 'disabled readonly' : ''}>
               </div>
             </div>
-            <div class="dialog-tools">${this.renderOpponentSelector(customTrainer)}<button class="icon-close" type="button" aria-label="Close" data-action="close">×</button></div>
+            <div class="dialog-tools">${this.renderOpponentSelector(customTrainer)}<button class="icon-close" type="button" aria-label="${t('menu.close')}" data-action="close">×</button></div>
           </header>
-          <div class="dialog-versus"><span>BUILD YOUR LINEUP</span><span>${filledCount} / 6 SELECTED</span></div>
+          <div class="dialog-versus"><span>${t('menu.buildLineup')}</span><span>${t('menu.selectedCount', { n: filledCount })}</span></div>
           <div class="team-grid team-grid--custom">${roster.map((id, index) => (id ? this.renderCreatureCard(id, index, true) : this.renderEmptySlot(index))).join('')}</div>
           <footer class="dialog-footer">
-            <span>${filledCount === 0 ? 'ADD AT LEAST ONE POKÉMON TO SAVE OR PLAY' : isLocked ? 'SAVED TRAINER · REORDER/EDIT ROSTER OR PLAY' : 'CUSTOM TRAINER · SAVE TO ROSTER OR PLAY'}</span>
+            <span>${filledCount === 0 ? t('menu.footerEmpty') : isLocked ? t('menu.footerSaved') : t('menu.footerCustom')}</span>
             <div class="dialog-actions">
-              ${isLocked ? `<button class="delete-button" type="button" data-action="delete-trainer"><span aria-hidden="true">🗑</span> DELETE</button>` : ''}
+              ${isLocked ? `<button class="delete-button" type="button" data-action="delete-trainer"><span aria-hidden="true">🗑</span> ${t('menu.delete')}</button>` : ''}
               <button class="save-button" id="save-trainer-btn" type="button" data-action="save-trainer" ${filledCount === 0 ? 'disabled' : ''}>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
                   <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM5 5v14h14V8.5L15.5 5H5zm2 1h7v4H7V6zm0 8h10v4H7v-4z"/>
                 </svg>
-                SAVE
+                ${t('menu.save')}
               </button>
-              <button class="play-button" type="button" data-action="play" ${filledCount === 0 ? 'disabled' : ''}>PLAY MATCH <b>→</b></button>
+              <button class="play-button" type="button" data-action="play" ${filledCount === 0 ? 'disabled' : ''}>${t('menu.playMatch')} <b>→</b></button>
             </div>
           </footer>
         </section>
@@ -1001,25 +1002,25 @@ export class MenuController {
         <section class="creature-picker move-picker-modal" role="dialog" aria-modal="true" aria-labelledby="move-picker-title" data-dialog>
           <header class="picker-heading">
             <div>
-              <span class="section-kicker">${escapeAttribute(pokemon.name.toUpperCase())} · MOVE SLOT 0${moveSlot + 1} (CURRENT: ${escapeAttribute(currentMove?.name ?? currentMoveId)})</span>
-              <h2 id="move-picker-title">Select Move</h2>
+              <span class="section-kicker">${t('menu.moveSlotKicker', { name: escapeAttribute(pokemon.name.toUpperCase()), slot: moveSlot + 1, current: escapeAttribute(currentMove?.name ?? currentMoveId) })}</span>
+              <h2 id="move-picker-title">${t('menu.selectMove')}</h2>
             </div>
-            <button class="icon-close" type="button" aria-label="Close move selection" data-action="close-move-picker">×</button>
+            <button class="icon-close" type="button" aria-label="${t('menu.closeMoveAria')}" data-action="close-move-picker">×</button>
           </header>
           <div class="picker-filter-bar move-picker-filter-bar">
             <input
               type="text"
               class="picker-search-input"
               data-filter="move-search"
-              placeholder="Search moves by name..."
+              placeholder="${t('menu.searchMovesPlaceholder')}"
               value="${escapeAttribute(this.moveSearchQuery)}"
-              aria-label="Search moves by name"
+              aria-label="${t('menu.searchMovesAria')}"
               autofocus
             />
             <div class="move-type-hints">
-              <span class="move-type-hints-label">ALLOWED TYPES:</span>
+              <span class="move-type-hints-label">${t('menu.allowedTypes')}</span>
               ${allowedTypes.map((t) => `<span class="type-tag type-${t.toLowerCase()}">${t}</span>`).join('')}
-              <span class="move-picker-count" id="move-picker-count">${allowedMoves.length} MOVES AVAILABLE</span>
+              <span class="move-picker-count" id="move-picker-count">${t('menu.movesAvailable', { n: allowedMoves.length })}</span>
             </div>
           </div>
           <div class="picker-list-container" id="move-picker-list-container">
@@ -1050,8 +1051,8 @@ export class MenuController {
     if (filteredMoves.length === 0) {
       return `
         <div class="picker-empty-state">
-          <span>NO MOVES FOUND MATCHING "${escapeAttribute(query)}"</span>
-          <p>Try searching for a different move name or clear the search query.</p>
+          <span>${t('menu.noMoves', { query: escapeAttribute(query) })}</span>
+          <p>${t('menu.noMovesHint')}</p>
         </div>
       `
     }
@@ -1068,7 +1069,7 @@ export class MenuController {
               type="button"
               class="move-choice ${isEquipped ? 'is-equipped' : ''}"
               ${isEquipped ? 'disabled aria-disabled="true"' : `data-action="choose-move" data-move-id="${escapeAttribute(move.id)}"`}
-              title="${isEquipped ? (isCurrentSlot ? 'Currently in this slot' : 'Already equipped on this Pokémon') : `Select ${move.name}`}"
+              title="${isEquipped ? (isCurrentSlot ? t('menu.moveInSlot') : t('menu.moveEquipped')) : t('menu.selectNamed', { name: move.name })}"
             >
               <span class="move-type-pip ${typeClass}" title="${move.type}"></span>
               <div class="move-choice-info">
@@ -1078,18 +1079,18 @@ export class MenuController {
                   <span class="category-tag category-${move.category}">${move.category.toUpperCase()}</span>
                 </div>
                 <div class="move-choice-meta">
-                  ${move.power ? `<span>PWR <b>${move.power}</b></span>` : ''}
-                  ${move.range ? `<span>RNG <b>${move.range}</b></span>` : ''}
-                  ${move.healing ? `<span>HEAL <b>${move.healing}</b></span>` : ''}
-                  ${move.uses ? `<span>PP <b>${move.uses}</b></span>` : ''}
-                  ${move.movement?.kind === 'dash' ? `<span>DASH <b>${move.movement.distance}px</b></span>` : ''}
+                  ${move.power ? `<span>${t('menu.statPower')} <b>${move.power}</b></span>` : ''}
+                  ${move.range ? `<span>${t('menu.statRange')} <b>${move.range}</b></span>` : ''}
+                  ${move.healing ? `<span>${t('menu.statHeal')} <b>${move.healing}</b></span>` : ''}
+                  ${move.uses ? `<span>${t('menu.statPP')} <b>${move.uses}</b></span>` : ''}
+                  ${move.movement?.kind === 'dash' ? `<span>${t('menu.statDash')} <b>${move.movement.distance}px</b></span>` : ''}
                   ${move.effect ? `<span>${move.effect.stat.toUpperCase()} <b>${move.effect.stages > 0 ? '+' : ''}${move.effect.stages}</b></span>` : ''}
                 </div>
               </div>
               <div class="move-choice-action">
                 ${isEquipped
-                  ? `<span class="move-equipped-badge">${isCurrentSlot ? 'CURRENT' : 'EQUIPPED'}</span>`
-                  : `<span class="move-select-arrow">SELECT <b>→</b></span>`
+                  ? `<span class="move-equipped-badge">${isCurrentSlot ? t('menu.badgeCurrent') : t('menu.badgeEquipped')}</span>`
+                  : `<span class="move-select-arrow">${t('menu.select')} <b>→</b></span>`
                 }
               </div>
             </button>
@@ -1110,7 +1111,7 @@ export class MenuController {
         const matchCount = q
           ? allowed.filter((m) => m.name.toLowerCase().includes(q) || m.id.toLowerCase().includes(q)).length
           : allowed.length
-        countEl.textContent = `${matchCount} MOVES AVAILABLE`
+        countEl.textContent = t('menu.movesAvailable', { n: matchCount })
       }
     }
   }
@@ -1135,8 +1136,8 @@ export class MenuController {
               data-slot="${index}"
               data-move-slot="${moveIndex}"
               data-pokemon-id="${escapeAttribute(id)}"
-              title="Click to customize move (${escapeAttribute(move?.name ?? moveId)})"
-              aria-label="Change move ${escapeAttribute(move?.name ?? moveId)} in slot ${moveIndex + 1}"
+              title="${t('menu.moveCustomizeTitle', { name: escapeAttribute(move?.name ?? moveId) })}"
+              aria-label="${t('menu.moveChangeAria', { name: escapeAttribute(move?.name ?? moveId), slot: moveIndex + 1 })}"
             >
               <span class="move-type-pip ${typeClass}" title="${move?.type ?? ''}"></span>
               <span class="move-chip-name">${escapeAttribute(move?.name ?? moveId)}</span>
@@ -1149,11 +1150,11 @@ export class MenuController {
       .join('')
     return `
       <article class="team-creature-card" data-team-index="${index}">
-        <div class="team-card-head"><span class="team-order">0${index + 1}</span><span class="team-type-tags">${typeTags}</span><span class="drag-grip" aria-label="Drag to reorder">⠿</span></div>
-        <div class="team-creature-main"><canvas class="team-creature-image" width="72" height="72" data-creature-id="${id}" role="img" aria-label="${pokemon.name}"></canvas><div class="team-creature-copy"><h3>${pokemon.name}</h3><span>${types.join(' / ')} TYPE · ${pokemon.region?.toUpperCase() ?? ''}</span></div></div>
-        <div class="stat-grid"><span>HP <b>${stats.hp}</b></span><span>ATK <b>${stats.attack}</b></span><span>DEF <b>${stats.defense}</b></span><span>SPA <b>${stats.specialAttack}</b></span><span>SPD <b>${stats.specialDefense}</b></span><span>SPE <b>${stats.speed}</b></span></div>
+        <div class="team-card-head"><span class="team-order">0${index + 1}</span><span class="team-type-tags">${typeTags}</span><span class="drag-grip" aria-label="${t('menu.dragAria')}">⠿</span></div>
+        <div class="team-creature-main"><canvas class="team-creature-image" width="72" height="72" data-creature-id="${id}" role="img" aria-label="${pokemon.name}"></canvas><div class="team-creature-copy"><h3>${pokemon.name}</h3><span>${t('menu.typeLine', { types: types.join(' / '), region: pokemon.region?.toUpperCase() ?? '' })}</span></div></div>
+        <div class="stat-grid"><span>${t('menu.statHp')} <b>${stats.hp}</b></span><span>${t('menu.statAtk')} <b>${stats.attack}</b></span><span>${t('menu.statDef')} <b>${stats.defense}</b></span><span>${t('menu.statSpa')} <b>${stats.specialAttack}</b></span><span>${t('menu.statSpd')} <b>${stats.specialDefense}</b></span><span>${t('menu.statSpe')} <b>${stats.speed}</b></span></div>
         <div class="move-list">${moveList}</div>
-        ${custom ? `<button class="remove-creature" type="button" aria-label="Remove ${pokemon.name}" data-action="remove-creature" data-slot="${index}">×</button>` : ''}
+        ${custom ? `<button class="remove-creature" type="button" aria-label="${t('menu.removeAria', { name: pokemon.name })}" data-action="remove-creature" data-slot="${index}">×</button>` : ''}
       </article>
     `
   }
@@ -1162,7 +1163,7 @@ export class MenuController {
     return `
       <div class="empty-team-slot" data-team-index="${index}">
         <span class="slot-number">0${index + 1}</span>
-        <button class="add-creature-button" type="button" data-action="add-creature" data-slot="${index}"><span>+</span><b>ADD POKÉMON</b></button>
+        <button class="add-creature-button" type="button" data-action="add-creature" data-slot="${index}"><span>+</span><b>${t('menu.addPokemon')}</b></button>
       </div>
     `
   }
@@ -1170,27 +1171,27 @@ export class MenuController {
   private renderPokemonPicker(): string {
     const availableRegions = Array.from(new Set(Object.values(POKEMONS).map((p) => p.region || 'Unknown')))
     const regionOptions = availableRegions
-      .map((r) => `<option value="${r}" ${this.pokemonRegionFilter === r ? 'selected' : ''}>${r} Region</option>`)
+      .map((r) => `<option value="${r}" ${this.pokemonRegionFilter === r ? 'selected' : ''}>${t('menu.regionOption', { region: r })}</option>`)
       .join('')
 
     return `
       <div class="modal-backdrop modal-backdrop--nested" data-action="close-picker">
         <section class="creature-picker" role="dialog" aria-modal="true" aria-labelledby="picker-title" data-dialog>
           <header class="picker-heading">
-            <div><span class="section-kicker">SLOT 0${(this.pickerSlot ?? 0) + 1}</span><h2 id="picker-title">Choose a Pokémon</h2></div>
-            <button class="icon-close" type="button" aria-label="Back to custom team" data-action="close-picker">×</button>
+            <div><span class="section-kicker">${t('menu.slotKicker', { n: (this.pickerSlot ?? 0) + 1 })}</span><h2 id="picker-title">${t('menu.choosePokemon')}</h2></div>
+            <button class="icon-close" type="button" aria-label="${t('menu.backAria')}" data-action="close-picker">×</button>
           </header>
           <div class="picker-filter-bar">
             <input
               type="text"
               class="picker-search-input"
               data-filter="pokemon-search"
-              placeholder="Search Pokémon by name or type..."
+              placeholder="${t('menu.searchPokemonPlaceholder')}"
               value="${escapeAttribute(this.pokemonSearchQuery)}"
-              aria-label="Search Pokémon by name"
+              aria-label="${t('menu.searchPokemonAria')}"
             />
-            <select class="picker-region-select" data-filter="pokemon-region" aria-label="Filter Pokémon by region">
-              <option value="all" ${this.pokemonRegionFilter === 'all' ? 'selected' : ''}>All Regions</option>
+            <select class="picker-region-select" data-filter="pokemon-region" aria-label="${t('menu.filterPokemonAria')}">
+              <option value="all" ${this.pokemonRegionFilter === 'all' ? 'selected' : ''}>${t('menu.allRegions')}</option>
               ${regionOptions}
             </select>
           </div>
@@ -1222,8 +1223,8 @@ export class MenuController {
     if (filtered.length === 0) {
       return `
         <div class="picker-empty-state">
-          <p>No Pokémon found matching "${escapeAttribute(this.pokemonSearchQuery)}".</p>
-          <small>Try a different name or clear the region filter.</small>
+          <p>${t('menu.noPokemon', { query: escapeAttribute(this.pokemonSearchQuery) })}</p>
+          <small>${t('menu.noPokemonHint')}</small>
         </div>
       `
     }
@@ -1242,18 +1243,18 @@ export class MenuController {
       const pokeButtons = pokesInRegion.map((pokemon) => `
         <button class="creature-choice" type="button" data-action="choose-creature" data-creature-id="${pokemon.id}" ${selected.has(pokemon.id) ? 'disabled' : ''}>
           <canvas class="team-creature-image" width="56" height="56" data-creature-id="${pokemon.id}" role="img" aria-label="${pokemon.name}"></canvas>
-          <span class="choice-copy"><b>${pokemon.name}</b><span>${getCreatureTypes(pokemon.type, pokemon.secondaryType).join(' / ')} · ${pokemon.stats.hp} HP · ${pokemon.stats.speed} SPD</span></span>
+          <span class="choice-copy"><b>${pokemon.name}</b><span>${t('menu.pickerStats', { types: getCreatureTypes(pokemon.type, pokemon.secondaryType).join(' / '), hp: pokemon.stats.hp, speed: pokemon.stats.speed })}</span></span>
           <span class="choice-types">${getCreatureTypes(pokemon.type, pokemon.secondaryType).map((type) => `<span class="type-tag type-${type.toLowerCase()}">${type}</span>`).join('')}</span>
-          <span class="choice-add">${selected.has(pokemon.id) ? 'IN TEAM' : '+'}</span>
+          <span class="choice-add">${selected.has(pokemon.id) ? t('menu.inTeam') : '+'}</span>
         </button>
       `)
 
       htmlParts.push(`
         <div class="picker-region-group">
           <div class="picker-region-divider">
-            <span class="picker-region-badge">${region.toUpperCase()} REGION</span>
+            <span class="picker-region-badge">${t('menu.regionUpper', { region: region.toUpperCase() })}</span>
             <span class="picker-region-line"></span>
-            <span class="region-count">${pokesInRegion.length} POKÉMON</span>
+            <span class="region-count">${t('menu.pokemonCount', { n: pokesInRegion.length })}</span>
           </div>
           <div class="creature-choice-list">
             ${pokeButtons.join('')}
@@ -1301,8 +1302,8 @@ export class MenuController {
       : '<span class="opponent-question">?</span>'
     const options = this.opponentPickerOpen
       ? `
-      <div class="opponent-options" role="listbox" aria-label="Choose an opponent">
-        <button class="opponent-option ${selected ? '' : 'is-selected'}" type="button" role="option" aria-selected="${selected === null}" data-action="select-opponent" data-opponent-id="random"><span class="opponent-question opponent-question--small">?</span><span><b>Random opponent</b><small>Draw at match start</small></span></button>
+      <div class="opponent-options" role="listbox" aria-label="${t('menu.chooseOpponentAria')}">
+        <button class="opponent-option ${selected ? '' : 'is-selected'}" type="button" role="option" aria-selected="${selected === null}" data-action="select-opponent" data-opponent-id="random"><span class="opponent-question opponent-question--small">?</span><span><b>${t('menu.randomOpponent')}</b><small>${t('menu.drawAtStart')}</small></span></button>
         ${candidates
           .map(
             (trainer) => `
@@ -1319,13 +1320,13 @@ export class MenuController {
 
     return `
       <div class="opponent-select">
-        <span class="opponent-select-label">OPPONENT</span>
+        <span class="opponent-select-label">${t('menu.opponent')}</span>
         <div class="opponent-control">
-          <button class="opponent-arrow" type="button" aria-label="Previous opponent" data-action="previous-opponent">‹</button>
-          <button class="opponent-current" type="button" aria-label="${selected ? `Opponent ${selected.name}` : 'Random opponent, click to choose'}" aria-haspopup="listbox" aria-expanded="${this.opponentPickerOpen}" data-action="toggle-opponent-list">
-            ${avatar}<span class="opponent-current-name">${selected?.name ?? 'RANDOM'}</span>
+          <button class="opponent-arrow" type="button" aria-label="${t('menu.prevOpponent')}" data-action="previous-opponent">‹</button>
+          <button class="opponent-current" type="button" aria-label="${selected ? t('menu.opponentNamed', { name: selected.name }) : t('menu.randomOpponentAria')}" aria-haspopup="listbox" aria-expanded="${this.opponentPickerOpen}" data-action="toggle-opponent-list">
+            ${avatar}<span class="opponent-current-name">${selected?.name ?? t('menu.random')}</span>
           </button>
-          <button class="opponent-arrow" type="button" aria-label="Next opponent" data-action="next-opponent">›</button>
+          <button class="opponent-arrow" type="button" aria-label="${t('menu.nextOpponent')}" data-action="next-opponent">›</button>
         </div>
         ${options}
       </div>
@@ -1368,7 +1369,7 @@ export class MenuController {
       shape: 'circle' as TrainerShape,
       color: '#e53e3e',
       accent: '#f6e05e',
-      label: 'Trainer',
+      label: t('menu.trainer'),
     }
     const roster = this.customRoster.filter((id): id is string => Boolean(id))
     const cleanCustomMoves: Record<string, [string, string, string, string]> = {}

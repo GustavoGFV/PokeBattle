@@ -66,6 +66,12 @@ Because this is a **100% open-source project**, the community is warmly invited 
 - **Decluttered Vertically Scrollable Combat Log**: Cleaned up log container with `overflow-y` scrolling for reviewing complete battle action history under **Action Field Calls**.
 - **32-Bit Web Audio Synthesizer**: Authentic chiptune music engine (FireRed, Emerald, Diamond, Pearl themes) with randomized track selection, persistent volume memory (`poke_music_vol`), and floating audio dock.
 
+### 🌐 Localization (English / Português)
+- A flag dropdown in the header switches the UI between **English** (default) and **Portuguese (Brazil)** instantly.
+- Dictionaries live in `src/utils/`: `language-en.ts` (source of truth, defines every key), `language-pt.ts` (typed so a missing key fails `tsc`) and `i18n.ts` (`t(key, params)`, `setLanguage`, `applyTranslations`). Portuguese is loaded lazily on first selection.
+- Static markup uses `data-i18n` / `data-i18n-aria`; dynamic strings call `t('key', { n })`. Pokémon, move, trainer and type names are data and are not translated. The language choice is not persisted.
+- To add a language: create `language-xx.ts`, register it in `i18n.ts` (`LANGUAGES` and `loaders`) and add a flag.
+
 ---
 
 ## 🏗️ Architecture Overview

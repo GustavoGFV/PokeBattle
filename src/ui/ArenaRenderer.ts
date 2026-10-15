@@ -14,6 +14,7 @@ import {
   isGifOnlyPokemon,
 } from '../domain/assets.ts'
 import { getGifFrame } from './gifSprite.ts'
+import { t } from '../utils/i18n.ts'
 import { ENTRANCE_DURATION_MS, TRAINER_ARRIVAL_MS } from '../game/arena.ts'
 import { getSpriteAnimationDurationMs, resolveSpriteFrame, validateSpriteDefinition } from '../domain/sprites.ts'
 import { getTypeColor } from '../data/types.ts'
@@ -978,10 +979,10 @@ export class ArenaRenderer {
     this.context.fillStyle = '#d0ef86'
     this.context.textAlign = 'center'
     this.context.font = '700 23px Impact, sans-serif'
-    this.context.fillText('FIELD READY', 500, WORLD_HEIGHT / 2 - 6)
+    this.context.fillText(t('canvas.fieldReady'), 500, WORLD_HEIGHT / 2 - 6)
     this.context.font = '10px monospace'
     this.context.fillStyle = '#d9dfc4'
-    this.context.fillText('CALL THE FIRST PAIR', 500, WORLD_HEIGHT / 2 + 15)
+    this.context.fillText(t('canvas.callFirstPair'), 500, WORLD_HEIGHT / 2 + 15)
   }
 
   private drawFinish(_state: BattleState): void {

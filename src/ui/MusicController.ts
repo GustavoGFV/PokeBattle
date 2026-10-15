@@ -1,4 +1,5 @@
 import { PokemonAudioEngine } from '../game/PokemonAudioEngine.ts'
+import { t, onLanguageChange } from '../utils/i18n.ts'
 
 export interface MusicConfig {
   menuPlaylistUrl?: string
@@ -32,6 +33,7 @@ export class MusicController {
   private hasInteracted: boolean = false
   private volumePercent: number = 20
   private lastNonZeroVolume: number = 20
+  private suppressAutoplay: boolean = false
 
   constructor(root: HTMLElement, _config?: MusicConfig) {
     this.root = root
@@ -45,6 +47,10 @@ export class MusicController {
     this.audioEngine = new PokemonAudioEngine(this.volumePercent / 100)
 
     this.setupAutoplayTriggers()
+    onLanguageChange(() => {
+      this.suppressAutoplay = true
+      this.render()
+    })
     this.showMenu()
   }
 
@@ -136,7 +142,7 @@ export class MusicController {
     const visualizer = this.root.querySelector<HTMLElement>('.poke-native-visualizer')
     if (playToggle) {
       playToggle.textContent = active ? '⏸' : '▶'
-      playToggle.title = active ? 'Pause' : 'Play'
+      playToggle.title = active ? t('music.pause') : t('music.play')
     }
     if (visualizer) {
       visualizer.classList.toggle('is-paused', !active)
@@ -160,7 +166,7 @@ export class MusicController {
 
     const gameEl = this.root.querySelector<HTMLElement>('#poke-track-game')
     if (gameEl) {
-      gameEl.textContent = `${track.game} • 32-Bit Audio`
+      gameEl.textContent = `${track.game} • ${t('music.audio32')}`
     }
 
     const countPill = this.root.querySelector<HTMLElement>('#poke-track-count')
@@ -176,6 +182,8 @@ export class MusicController {
     const playlist = this.audioEngine.getPlaylist(this.currentScene)
     const index = this.audioEngine.getTrackIndex(this.currentScene)
     const isPlaying = this.audioEngine.isActive()
+    const skipAutoplay = this.suppressAutoplay
+    this.suppressAutoplay = false
 
     const existingDock = this.root.querySelector<HTMLDetailsElement>('.poke-music-dock')
     const isOpen = existingDock ? existingDock.open : true
@@ -187,7 +195,7 @@ export class MusicController {
           <span class="spotify-now-playing-label" id="poke-track-header">
             [${index + 1}/${playlist.length}] ${track.title}
           </span>
-          <b class="music-badge">32-BIT BGM</b>
+          <b class="music-badge">${t('music.badge')}</b>
         </summary>
 
         <div class="poke-music-panel spotify-music-panel">
@@ -202,7 +210,7 @@ export class MusicController {
             <div class="poke-track-details">
               <strong class="poke-track-title" id="poke-track-title">${track.title}</strong>
               <div class="poke-track-meta">
-                <span class="poke-track-game" id="poke-track-game">${track.game} • 32-Bit Audio</span>
+                <span class="poke-track-game" id="poke-track-game">${track.game} • ${t('music.audio32')}</span>
                 <span class="poke-track-count" id="poke-track-count">${index + 1} / ${playlist.length}</span>
               </div>
             </div>
@@ -210,13 +218,13 @@ export class MusicController {
 
           <!-- Controls: Prev, Play/Pause, Next Track (Symbols Only) -->
           <div class="poke-audio-controls">
-            <button type="button" class="poke-btn poke-btn--prev" id="poke-btn-prev" title="Previous Track" aria-label="Previous Track">
+            <button type="button" class="poke-btn poke-btn--prev" id="poke-btn-prev" title="${t('music.prevTrack')}" aria-label="${t('music.prevTrack')}">
               ⏮
             </button>
-            <button type="button" class="poke-btn poke-btn--play" id="poke-play-toggle" title="${isPlaying ? 'Pause' : 'Play'}" aria-label="Play or Pause">
+            <button type="button" class="poke-btn poke-btn--play" id="poke-play-toggle" title="${isPlaying ? t('music.pause') : t('music.play')}" aria-label="${t('music.playPause')}">
               ${isPlaying ? '⏸' : '▶'}
             </button>
-            <button type="button" class="poke-btn poke-btn--next" id="poke-btn-next" title="Next Track" aria-label="Next Track">
+            <button type="button" class="poke-btn poke-btn--next" id="poke-btn-next" title="${t('music.nextTrack')}" aria-label="${t('music.nextTrack')}">
               ⏭
             </button>
           </div>
@@ -224,13 +232,13 @@ export class MusicController {
           <!-- Volume Bar with Mute and Exact Percentage -->
           <div class="spotify-controls-bar poke-volume-controls">
             <div class="spotify-volume-bar">
-              <button type="button" class="spotify-volume-icon-btn" id="poke-volume-icon" title="Toggle Mute" aria-label="Toggle Mute">
+              <button type="button" class="spotify-volume-icon-btn" id="poke-volume-icon" title="${t('music.mute')}" aria-label="${t('music.mute')}">
                 ${this.getVolumeIcon(this.volumePercent)}
               </button>
-              <input type="range" class="spotify-volume-slider" id="poke-volume-slider" min="0" max="100" value="${this.volumePercent}" title="Tab Volume ${this.volumePercent}%" aria-label="Audio Volume">
+              <input type="range" class="spotify-volume-slider" id="poke-volume-slider" min="0" max="100" value="${this.volumePercent}" title="${t('music.volumeTitle', { n: this.volumePercent })}" aria-label="${t('music.volumeAria')}">
               <span class="spotify-volume-label" id="poke-volume-label">${this.volumePercent}%</span>
             </div>
-            <span class="poke-audio-quality-tag">32-BIT STEREO</span>
+            <span class="poke-audio-quality-tag">${t('music.stereo')}</span>
           </div>
         </div>
       </details>
@@ -284,7 +292,7 @@ export class MusicController {
     // Autoplay trigger
     setTimeout(() => {
       this.audioEngine.setVolume(this.volumePercent / 100)
-      if (!this.audioEngine.isActive()) {
+      if (!skipAutoplay && !this.audioEngine.isActive()) {
         if (this.currentScene === 'menu') {
           this.audioEngine.playMenu()
         } else {

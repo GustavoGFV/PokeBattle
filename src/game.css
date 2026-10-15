@@ -40,6 +40,18 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--gold); outline-
 .scoreboard strong { color: var(--paper); font: 700 15px/1 var(--display); }
 .scoreboard i { color: var(--coral); font-size: 10px; font-style: normal; }
 
+.header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
+.lang-select { position: relative; }
+.lang-toggle, .lang-option { display: flex; align-items: center; gap: 8px; color: var(--paper); font: 700 11px/1 var(--display); cursor: pointer; }
+.lang-toggle { padding: 7px 10px; border: 1px solid var(--line); background: var(--panel); }
+.lang-toggle:hover, .lang-toggle:focus-visible { border-color: var(--lime); outline: none; }
+.lang-toggle svg, .lang-option svg { width: 22px; height: 15px; flex: none; }
+.lang-caret { color: var(--muted); font-size: 10px; }
+.lang-list { position: absolute; right: 0; top: calc(100% + 4px); z-index: 50; min-width: 100%; margin: 0; padding: 4px 0; list-style: none; border: 1px solid var(--line); background: var(--panel); white-space: nowrap; }
+.lang-list[hidden] { display: none; }
+.lang-option { padding: 8px 12px; }
+.lang-option:hover, .lang-option:focus-visible, .lang-option.is-selected { background: #ffffff14; outline: none; }
+
 .battle-shell { width: min(1220px, calc(100% - 48px)); margin: 0 auto; padding: 24px 0 18px; }
 .battle-hud { max-width: 900px; margin: 0 auto; min-height: 136px; display: grid; grid-template-columns: minmax(0, 1fr) 104px minmax(0, 1fr); align-items: center; gap: clamp(15px, 3vw, 44px); padding: 14px 18px; border: 1px solid var(--line); border-bottom: 0; background: var(--panel); }
 .combatant { display: grid; grid-template-columns: 45px minmax(0, 1fr) 74px; gap: 13px; align-items: center; min-width: 0; }

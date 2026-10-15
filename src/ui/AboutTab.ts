@@ -3,6 +3,8 @@
  * Handles the logic, presentation, and links for the About Project view.
  */
 
+import { t } from '../utils/i18n.ts'
+
 export const GITHUB_REPO_URL = 'https://github.com/GFV-dev/Poke-Battle'
 export const POKEMON_BATTLEGROUNDS_URL = 'https://pokemonbattlegrounds.com'
 
@@ -22,9 +24,9 @@ export function getGithubIconSvg(size: number = 20): string {
  */
 export function renderGithubLink(className: string = 'github-repo-link'): string {
   return `
-    <a href="${GITHUB_REPO_URL}" target="_blank" rel="noopener noreferrer" class="${className}" aria-label="Visit the GitHub repository">
+    <a href="${GITHUB_REPO_URL}" target="_blank" rel="noopener noreferrer" class="${className}" aria-label="${t('footer.repoAria')}">
       ${getGithubIconSvg(20)}
-      <span>The full project here</span>
+      <span>${t('footer.repo')}</span>
     </a>
   `
 }
@@ -45,13 +47,13 @@ export class AboutTab {
       <section class="about-section" id="about-section" aria-labelledby="about-heading">
         <div class="menu-section-heading">
           <div>
-            <span class="section-kicker">COMMUNITY & OPEN SOURCE</span>
-            <h2 id="about-heading">About Poké Battle</h2>
+            <span class="section-kicker">${t('about.kicker')}</span>
+            <h2 id="about-heading">${t('about.title')}</h2>
           </div>
           <div class="about-badges">
-            <span class="about-badge about-badge--green">NON-COMMERCIAL</span>
-            <span class="about-badge about-badge--blue">OPEN SOURCE</span>
-            <span class="about-badge about-badge--gold">CONTINUOUS UPDATES</span>
+            <span class="about-badge about-badge--green">${t('about.badgeNonCommercial')}</span>
+            <span class="about-badge about-badge--blue">${t('about.badgeOpenSource')}</span>
+            <span class="about-badge about-badge--gold">${t('about.badgeUpdates')}</span>
           </div>
         </div>
 
@@ -60,12 +62,10 @@ export class AboutTab {
           <article class="about-card about-card--highlight">
             <div class="about-card-header">
               <span class="about-card-icon" aria-hidden="true">🛡️</span>
-              <h3>Non-Commercial & Non-Profitable Project</h3>
+              <h3>${t('about.nonCommercialTitle')}</h3>
             </div>
             <p>
-              <strong>Poké Battle</strong> is a strictly <em>non-commercial</em>, fan-made, and <em>non-profitable</em> software project.
-              It is built purely out of admiration and artistic tribute to the Pokémon franchise. There are zero ads, zero paywalls,
-              and no microtransactions or monetization of any kind.
+              ${t('about.nonCommercialBody')}
             </p>
           </article>
 
@@ -73,11 +73,10 @@ export class AboutTab {
           <article class="about-card">
             <div class="about-card-header">
               <span class="about-card-icon" aria-hidden="true">🎬</span>
-              <h3>Inspiration & Acknowledgement</h3>
+              <h3>${t('about.inspirationTitle')}</h3>
             </div>
             <p>
-              This simulator is directly inspired by the popular <strong>Pokémon Battleground</strong> videos.
-              Special tribute and credit go to their phenomenal creators. You can visit their official project and watch their matches at:
+              ${t('about.inspirationBody')}
             </p>
             <div class="about-link-row">
               <a href="${POKEMON_BATTLEGROUNDS_URL}" target="_blank" rel="noopener noreferrer" class="about-external-btn">
@@ -91,14 +90,10 @@ export class AboutTab {
           <article class="about-card about-card--story">
             <div class="about-card-header">
               <span class="about-card-icon" aria-hidden="true">💡</span>
-              <h3>A Developer's Passion</h3>
+              <h3>${t('about.storyTitle')}</h3>
             </div>
             <blockquote class="about-developer-note">
-              "This game was developed by a single developer. 
-              I've always planned a game where the pokemon would fight, without turns, only the moves, like the anime fights and then i watched the Pokémon Battleground videos. 
-              After that i've decided to put my hands to work on it, an automated, real-time fighting Pokémon game in the browser. 
-              The goal was to build a fluid experience where creatures dynamically maneuver with stats based orbits, execute physical dashes and ranged projectiles, dodge incoming attacks, in a all client-side without any downloads or server dependencies.
-              Seeing it come to life in modern TypeScript has been an incredible journey."
+              ${t('about.storyBody')}
             </blockquote>
           </article>
 
@@ -106,20 +101,17 @@ export class AboutTab {
           <article class="about-card about-card--collaboration">
             <div class="about-card-header">
               <span class="about-card-icon" aria-hidden="true">🤝</span>
-              <h3>Continuous Updates & Community PRs</h3>
+              <h3>${t('about.collabTitle')}</h3>
             </div>
             <p>
-              This web app is under active, continuous development! New Pokémon species, refined damage formulas, shiny mechanics,
-              animations, and battle arenas are continually introduced.
+              ${t('about.collabBody1')}
             </p>
             <p>
-              Because this is a <strong>100% open-source project</strong>, the community is enthusiastically invited to collaborate.
-              Whether you want to add new Pokémon sprites, balance move pools, create custom themes, or optimize rendering,
-              your contributions are warmly welcomed! Feel free to fork the repository, open issues, and send <strong>Pull Requests (PRs)</strong>.
+              ${t('about.collabBody2')}
             </p>
 
             <div class="about-github-callout">
-              <span class="callout-label">JOIN THE OPEN-SOURCE PROJECT:</span>
+              <span class="callout-label">${t('about.joinLabel')}</span>
               ${renderGithubLink('github-repo-link github-repo-link--primary')}
             </div>
           </article>
@@ -127,8 +119,7 @@ export class AboutTab {
           <!-- Legal & Attribution Footer Note -->
           <div class="about-disclaimer">
             <p>
-              Pokémon and all respective names, sprites, and concepts are trademark & © of Nintendo, Creatures Inc., and Game Freak 1996–2026.
-              Sprite sheets are contributed by the PMD SpriteCollab community under CC BY-NC 4.0.
+              ${t('about.disclaimer')}
             </p>
           </div>
         </div>

@@ -10,6 +10,8 @@ import { ArenaRenderer, type ArenaTheme } from './ui/ArenaRenderer.ts'
 import { MenuController } from './ui/MenuController.ts'
 import { getTrainerSpritePath } from './domain/assets.ts'
 import { MusicController } from './ui/MusicController.ts'
+import { LanguageSelector } from './ui/LanguageSelector.ts'
+import { applyTranslations, onLanguageChange, t, tName } from './utils/i18n.ts'
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
@@ -17,12 +19,12 @@ const SESSION_MATCH_KEY = 'poke_match_count'
 let matchCount = Math.max(1, Number(sessionStorage.getItem(SESSION_MATCH_KEY) || 1))
 
 function formatMatch(num: number): string {
-  return `MATCH ${String(num).padStart(2, '0')}`
+  return t('header.match', { n: String(num).padStart(2, '0') })
 }
 
 app.innerHTML = `
   <header class="masthead">
-    <a class="wordmark" href="#" aria-label="Poke Battle home">
+    <a class="wordmark" href="#" data-i18n-aria="header.homeAria">
       <span class="wordmark-mark" aria-hidden="true">
         <svg viewBox="0 0 64 64" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="32" cy="32" r="30" fill="#0d1424"/>
@@ -37,8 +39,8 @@ app.innerHTML = `
       </span>
       POKÉ BATTLE
     </a>
-    <div class="masthead-meta" id="masthead-meta"><span class="live-indicator"></span> POKÉ LEAGUE <span class="meta-divider">/</span> ${formatMatch(matchCount)}</div>
-    <div class="header-actions"><button id="return-menu" class="return-menu" type="button" hidden>ROSTER</button><div class="scoreboard" aria-label="Player match record"><span>RECORD</span><strong id="record">0 <i>W</i> / 0 <i>L</i></strong></div></div>
+    <div class="masthead-meta" id="masthead-meta"></div>
+    <div class="header-actions"><div id="language-root"></div><button id="return-menu" class="return-menu" type="button" data-i18n="header.roster" hidden></button><div class="scoreboard" data-i18n-aria="header.recordAria"><span data-i18n="header.record"></span><strong id="record"></strong></div></div>
   </header>
 
   <div id="music-root"></div>
@@ -46,56 +48,56 @@ app.innerHTML = `
   <div id="menu-root"></div>
 
   <main class="battle-shell" id="battle-screen" hidden>
-    <section class="battle-hud" aria-label="Battle status">
+    <section class="battle-hud" data-i18n-aria="battle.statusAria">
       <article class="combatant combatant--sun" id="sun-panel"></article>
       <div class="match-clock" aria-live="off">
-        <span class="arena-info" id="arena-info">Arena: The Moss Court ✳</span>
-        <span class="clock-label">ELAPSED</span>
+        <span class="arena-info" id="arena-info"></span>
+        <span class="clock-label" data-i18n="battle.elapsed"></span>
         <strong id="timer">00:00</strong>
-        <span class="round-label" id="phase-label">READY</span>
+        <span class="round-label" id="phase-label"></span>
       </div>
       <article class="combatant combatant--moon" id="moon-panel"></article>
     </section>
 
-    <section class="arena-wrap" aria-label="Battle arena">
-      <div class="arena-rail"><span id="arena-title">FIELD 00 <b>/</b> THE MOSS COURT</span><span class="arena-weather" id="arena-weather">CLEAR SKIES <i>✳</i></span></div>
-      <canvas id="arena" role="img" aria-label="Top-down arena showing both pokémons moving and battling"></canvas>
-      <div class="arena-caption"><span>ROUND <b id="round-number">01</b></span><span>LIVE FIELD FEED <b class="feed-dot"></b></span></div>
+    <section class="arena-wrap" data-i18n-aria="battle.arenaAria">
+      <div class="arena-rail"><span id="arena-title"></span><span class="arena-weather" id="arena-weather"></span></div>
+      <canvas id="arena" role="img" data-i18n-aria="battle.canvasAria"></canvas>
+      <div class="arena-caption"><span><span data-i18n="battle.round"></span> <b id="round-number">01</b></span><span><span data-i18n="battle.liveFeed"></span> <b class="feed-dot"></b></span></div>
       <div class="arena-finish-overlay" id="arena-finish-overlay" hidden>
-        <h2 class="finish-title" id="finish-title">MATCH COMPLETED</h2>
-        <p class="finish-subtitle" id="finish-subtitle">CHOOSE AN OPTION TO PROCEED</p>
+        <h2 class="finish-title" id="finish-title"></h2>
+        <p class="finish-subtitle" id="finish-subtitle"></p>
         <div class="finish-actions">
-          <button id="arena-continue-button" class="battle-button battle-button--continue" type="button"><span aria-hidden="true">▶</span> CONTINUE</button>
-          <button id="arena-return-button" class="battle-button battle-button--return" type="button"><span aria-hidden="true">↩</span> RETURN TO MENU</button>
+          <button id="arena-continue-button" class="battle-button battle-button--continue" type="button"><span aria-hidden="true">▶</span> <span data-i18n="controls.continue"></span></button>
+          <button id="arena-return-button" class="battle-button battle-button--return" type="button"><span aria-hidden="true">↩</span> <span data-i18n="controls.returnMenu"></span></button>
         </div>
       </div>
     </section>
 
-    <section class="match-controls" aria-label="Match controls">
-      <div class="control-copy"><span class="control-kicker">AUTONOMOUS DUEL</span><strong id="match-message">Six pokémons each. One field at a time.</strong></div>
+    <section class="match-controls" data-i18n-aria="controls.aria">
+      <div class="control-copy"><span class="control-kicker" data-i18n="controls.kicker"></span><strong id="match-message"></strong></div>
       <div class="control-actions">
-        <div class="speed-control" role="group" aria-label="Battle speed">
+        <div class="speed-control" role="group" data-i18n-aria="controls.speedAria">
           <button class="speed-option is-selected" data-speed="1" aria-pressed="true">1×</button>
           <button class="speed-option" data-speed="2" aria-pressed="false">2×</button>
         </div>
-        <button id="battle-button" class="battle-button" type="button"><span aria-hidden="true">▶</span> BEGIN BOUT</button>
-        <button id="continue-button" class="battle-button battle-button--continue" type="button" hidden><span aria-hidden="true">▶</span> CONTINUE</button>
-        <button id="end-return-button" class="battle-button battle-button--return" type="button" hidden><span aria-hidden="true">↩</span> RETURN TO MENU</button>
+        <button id="battle-button" class="battle-button" type="button"></button>
+        <button id="continue-button" class="battle-button battle-button--continue" type="button" hidden><span aria-hidden="true">▶</span> <span data-i18n="controls.continue"></span></button>
+        <button id="end-return-button" class="battle-button battle-button--return" type="button" hidden><span aria-hidden="true">↩</span> <span data-i18n="controls.returnMenu"></span></button>
       </div>
     </section>
 
-    <section class="battle-feed" aria-label="Battle history and lineup">
+    <section class="battle-feed" data-i18n-aria="feed.aria">
       <div class="feed-column">
-        <div class="feed-header"><span class="feed-title">ACTION FIELD CALLS</span><span class="feed-count" id="feed-count">AWAITING FIRST CALL</span></div>
+        <div class="feed-header"><span class="feed-title" data-i18n="feed.title"></span><span class="feed-count" id="feed-count"></span></div>
         <ol class="feed-list" id="battle-feed"></ol>
       </div>
       <div class="roster-overview">
         <div class="roster-panel">
-          <div class="roster-header"><span>SUN BENCH</span></div>
+          <div class="roster-header"><span data-i18n="bench.sun"></span></div>
           <ol class="roster-strip" id="sun-roster"></ol>
         </div>
         <div class="roster-panel">
-          <div class="roster-header"><span>MOON BENCH</span></div>
+          <div class="roster-header"><span data-i18n="bench.moon"></span></div>
           <ol class="roster-strip" id="moon-roster"></ol>
         </div>
       </div>
@@ -122,23 +124,30 @@ const arenaReturnButton = document.querySelector<HTMLButtonElement>('#arena-retu
 const arenaTitle = document.querySelector<HTMLElement>('#arena-title')
 const arenaWeather = document.querySelector<HTMLElement>('#arena-weather')
 const arenaInfo = document.querySelector<HTMLElement>('#arena-info')
+applyTranslations()
 function updateMatchHeader(matchNum: number = matchCount): void {
   const meta = document.querySelector<HTMLElement>('#masthead-meta')
   if (meta) {
-    meta.innerHTML = `<span class="live-indicator"></span> POKÉ LEAGUE <span class="meta-divider">/</span> ${formatMatch(matchNum)}`
+    meta.innerHTML = `<span class="live-indicator"></span> ${t('header.league')} <span class="meta-divider">/</span> ${formatMatch(matchNum)}`
   }
 }
 
 function updateArenaThemeUI(theme: ArenaTheme, matchNum: number = matchCount): void {
+  const name = tName('theme', theme.name)
   if (arenaTitle) {
-    arenaTitle.innerHTML = `FIELD ${String(matchNum).padStart(2, '0')} <b>/</b> ${theme.name.toUpperCase()}`
+    arenaTitle.innerHTML = `${t('battle.field', { n: String(matchNum).padStart(2, '0') })} <b>/</b> ${name.toUpperCase()}`
   }
   if (arenaWeather) {
-    arenaWeather.innerHTML = `${theme.weather.toUpperCase()} <i>${theme.weatherIcon}</i>`
+    arenaWeather.innerHTML = `${tName('weather', theme.weather).toUpperCase()} <i>${theme.weatherIcon}</i>`
   }
   if (arenaInfo) {
-    arenaInfo.textContent = `Arena: ${theme.name} ${theme.weatherIcon}`
+    arenaInfo.textContent = t('battle.arenaInfo', { name, icon: theme.weatherIcon })
   }
+}
+
+function renderRecord(): void {
+  const { wins, losses } = loadScore()
+  recordElement.innerHTML = `${wins} <i>${t('header.win')}</i> / ${losses} <i>${t('header.loss')}</i>`
 }
 updateMatchHeader(matchCount)
 updateArenaThemeUI(renderer.getCurrentTheme(), matchCount)
@@ -181,13 +190,23 @@ let lastHudUpdate = 0
 let lastRenderedLog = 0
 let resultRecorded = false
 
-const record = loadScore()
-recordElement.innerHTML = `${record.wins} <i>W</i> / ${record.losses} <i>L</i>`
+new LanguageSelector(document.querySelector<HTMLElement>('#language-root')!)
+renderRecord()
 const menu = new MenuController(menuRoot, trainers, renderer, startMatch)
 menu.render()
 renderRosters()
 renderHud()
 renderFeed()
+
+onLanguageChange(() => {
+  applyTranslations()
+  updateMatchHeader(matchCount)
+  updateArenaThemeUI(renderer.getCurrentTheme(), matchCount)
+  renderRecord()
+  menu.render()
+  renderHud()
+  renderFeed()
+})
 
 function returnToMenu(): void {
   engine.pause()
@@ -326,38 +345,38 @@ function renderHud(): void {
   const minutes = Math.floor(engine.state.elapsedMs / 60000)
   const seconds = Math.floor((engine.state.elapsedMs % 60000) / 1000)
   timerElement.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-  phaseElement.textContent = engine.state.phase.toUpperCase()
+  phaseElement.textContent = t(`phase.${engine.state.phase}`)
 
   if (engine.state.phase === 'ready') {
-    battleButton.innerHTML = '<span aria-hidden="true">▶</span> BEGIN BOUT'
-    matchMessage.textContent = 'Six pokémons each. One field at a time.'
+    battleButton.innerHTML = `<span aria-hidden="true">▶</span> ${t('controls.begin')}`
+    matchMessage.textContent = t('message.ready')
     continueButton.hidden = true
     endReturnButton.hidden = true
     arenaFinishOverlay.hidden = true
   } else if (engine.state.phase === 'entrance') {
-    battleButton.innerHTML = '<span aria-hidden="true">»</span> SKIP ENTRANCE'
-    matchMessage.textContent = 'The challengers are taking their marks.'
+    battleButton.innerHTML = `<span aria-hidden="true">»</span> ${t('controls.skip')}`
+    matchMessage.textContent = t('message.entrance')
     continueButton.hidden = true
     endReturnButton.hidden = true
     arenaFinishOverlay.hidden = true
   } else if (engine.state.phase === 'running') {
-    battleButton.innerHTML = '<span aria-hidden="true">Ⅱ</span> PAUSE MATCH'
-    matchMessage.textContent = 'The field is live. Matchups decide the tempo.'
+    battleButton.innerHTML = `<span aria-hidden="true">Ⅱ</span> ${t('controls.pause')}`
+    matchMessage.textContent = t('message.running')
     continueButton.hidden = true
     endReturnButton.hidden = true
     arenaFinishOverlay.hidden = true
   } else if (engine.state.phase === 'paused') {
-    battleButton.innerHTML = '<span aria-hidden="true">▶</span> RESUME MATCH'
-    matchMessage.textContent = 'Match paused. The field is holding.'
+    battleButton.innerHTML = `<span aria-hidden="true">▶</span> ${t('controls.resume')}`
+    matchMessage.textContent = t('message.paused')
     continueButton.hidden = true
     endReturnButton.hidden = true
     arenaFinishOverlay.hidden = true
   } else {
-    battleButton.innerHTML = '<span aria-hidden="true">↻</span> RUN IT BACK'
+    battleButton.innerHTML = `<span aria-hidden="true">↻</span> ${t('controls.again')}`
     const winnerName =
       engine.state.winner === 'draw'
-        ? 'EVEN FIELD'
-        : `${engine.state.teams[engine.state.winner!].trainer.name} Wins!`
+        ? t('message.even')
+        : t('message.wins', { name: engine.state.teams[engine.state.winner!].trainer.name })
     matchMessage.textContent = winnerName
 
     continueButton.hidden = false
@@ -366,10 +385,10 @@ function renderHud(): void {
     finishTitle.textContent = winnerName
     finishSubtitle.textContent =
       engine.state.winner === 'sun'
-        ? 'VICTORY ACHIEVED · PROCEED TO NEXT TRAINER'
+        ? t('finish.victory')
         : engine.state.winner === 'moon'
-        ? 'DEFEAT · CONTINUE OR RETURN TO MENU'
-        : 'EVEN BOUT · CONTINUE OR RETURN TO MENU'
+        ? t('finish.defeat')
+        : t('finish.even')
   }
 
   document.querySelector('#round-number')!.textContent = String(
@@ -404,14 +423,14 @@ function renderCombatant(side: 'sun' | 'moon'): void {
   const alignment = side === 'sun' ? 'panel-copy' : 'panel-copy panel-copy--right'
   const portrait = side === 'sun' ? 'portrait-sun' : 'portrait-moon'
 
-  const portraitCanvasHtml = `<canvas class="creature-portrait" id="${portrait}" width="96" height="96" role="img" aria-label="${pokemon.name}, ${pokemonTypes.join(' and ')} type"></canvas>`
+  const portraitCanvasHtml = `<canvas class="creature-portrait" id="${portrait}" width="96" height="96" role="img" aria-label="${t('battle.portraitAria', { name: pokemon.name, types: pokemonTypes.join(t('battle.typeJoin')) })}"></canvas>`
   const statsCopyHtml = `
     <div class="${alignment}">
       <div class="competitor-name">${playerName}</div>
       <div class="creature-title"><h1>${pokemon.name}</h1></div>
       <div class="creature-types">${typeTags}<span class="type-note">${typeDescription}</span></div>
-      <div class="health-track" role="meter" aria-label="${pokemon.name} health" aria-valuemin="0" aria-valuemax="${pokemon.stats.hp}" aria-valuenow="${team.active.hp}"><span style="width:${hpPercent}%"></span></div>
-      <div class="health-meta"><span>VITALS</span><strong>${Math.max(0, team.active.hp)} <i>/</i> ${pokemon.stats.hp}</strong></div>
+      <div class="health-track" role="meter" aria-label="${t('battle.health', { name: pokemon.name })}" aria-valuemin="0" aria-valuemax="${pokemon.stats.hp}" aria-valuenow="${team.active.hp}"><span style="width:${hpPercent}%"></span></div>
+      <div class="health-meta"><span>${t('battle.vitals')}</span><strong>${Math.max(0, team.active.hp)} <i>/</i> ${pokemon.stats.hp}</strong></div>
     </div>
   `
 
@@ -428,7 +447,7 @@ function renderFeed(): void {
   feedElement.innerHTML = logEntries
     .map((entry) => `<li><span class="feed-time">${formatTime(entry.time)}</span><span>${escapeHtml(entry.message)}</span></li>`)
     .join('')
-  feedCount.textContent = logEntries.length ? `${logEntries.length} FIELD CALLS` : 'AWAITING FIRST CALL'
+  feedCount.textContent = logEntries.length ? t('feed.count', { n: logEntries.length }) : t('feed.waiting')
   feedElement.scrollTop = feedElement.scrollHeight
 }
 
@@ -469,8 +488,8 @@ function animate(now: number): void {
 
   if (engine.state.phase === 'ended' && !resultRecorded) {
     resultRecorded = true
-    const updated = recordResult(engine.state.winner ?? 'draw')
-    recordElement.innerHTML = `${updated.wins} <i>W</i> / ${updated.losses} <i>L</i>`
+    recordResult(engine.state.winner ?? 'draw')
+    renderRecord()
   }
 
   renderer.render(engine.state, now)
