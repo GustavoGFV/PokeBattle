@@ -9,6 +9,11 @@ import { SfxPlayer } from './game/sfx.ts'
 import type { BattleState, Side } from './domain/models.ts'
 import { TRAINER_ARRIVAL_MS } from './game/arena.ts'
 import { GITHUB_REPO_URL } from './data/constants.ts'
+import { inject } from '@vercel/analytics'
+import { injectSpeedInsights } from '@vercel/speed-insights'
+
+inject()
+injectSpeedInsights()
 
 document.querySelectorAll<HTMLAnchorElement>('a[data-github="repo"]').forEach((a) => {
   a.href = GITHUB_REPO_URL
