@@ -1,8 +1,8 @@
 # Poké Battle (Field Circuit)
 
-## 🎮 Play it Here: [gustavogfv.github.io/PokeBattle](https://gustavogfv.github.io/PokeBattle/)
+## 🎮 Play it Here: [pokebattleground.vercel.app](https://pokebattleground.vercel.app)
 
-[![Play](https://img.shields.io/badge/▶_Play_it_Here-gustavogfv.github.io%2FPokeBattle-e53e3e?style=for-the-badge)](https://gustavogfv.github.io/PokeBattle/)
+[![Play](https://img.shields.io/badge/▶_Play_it_Here-pokebattleground.vercel.app-e53e3e?style=for-the-badge)](https://pokebattleground.vercel.app)
 
 > **A fast, lightweight, browser-based Pokémon battle simulator and team builder built with modern TypeScript and Vite.**  
 > Features autonomous 6-on-6 Pokémon duels, authentic 32-bit chiptune audio synthesizers, customizable trainer rosters, shiny mechanics, dynamic dodge physics, local persistence, and real-time canvas rendering.
