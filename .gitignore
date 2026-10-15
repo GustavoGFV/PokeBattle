@@ -7,6 +7,13 @@ dist-ssr/
 build/
 *.local
 
+*.tsbuildinfo
+coverage/
+
+# OS files
+Thumbs.db
+desktop.ini
+
 # Environment variables & local secrets
 .env
 .env.*
