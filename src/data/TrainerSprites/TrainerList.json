@@ -1,0 +1,1180 @@
+[
+  {
+    "Name": "Brock",
+    "Region": "Kanto",
+    "Pokemons": [
+      {
+        "name": "Golem",
+        "type": ["Rock", "Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Heavy Slam", "type": "Steel" },
+          { "name": "Stealth Rock", "type": "Rock" }
+        ]
+      },
+      {
+        "name": "Aerodactyl",
+        "type": ["Rock", "Flying"],
+        "moveset": [
+          { "name": "Rock Slide", "type": "Rock" },
+          { "name": "Aerial Ace", "type": "Flying" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Omastar",
+        "type": ["Rock", "Water"],
+        "moveset": [
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Ancient Power", "type": "Rock" },
+          { "name": "Shell Smash", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Kabutops",
+        "type": ["Rock", "Water"],
+        "moveset": [
+          { "name": "Waterfall", "type": "Water" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Aqua Jet", "type": "Water" },
+          { "name": "Swords Dance", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Relicanth",
+        "type": ["Water", "Rock"],
+        "moveset": [
+          { "name": "Head Smash", "type": "Rock" },
+          { "name": "Waterfall", "type": "Water" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Yawn", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Steelix",
+        "type": ["Steel", "Ground"],
+        "moveset": [
+          { "name": "Iron Tail", "type": "Steel" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Rock Slide", "type": "Rock" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Misty",
+    "Region": "Kanto",
+    "Pokemons": [
+      {
+        "name": "Starmie",
+        "type": ["Water", "Psychic"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Thunderbolt", "type": "Electric" }
+        ]
+      },
+      {
+        "name": "Golduck",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Focus Blast", "type": "Fighting" }
+        ]
+      },
+      {
+        "name": "Dewgong",
+        "type": ["Water", "Ice"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Signal Beam", "type": "Bug" },
+          { "name": "Aqua Jet", "type": "Water" }
+        ]
+      },
+      {
+        "name": "Vaporeon",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Scald", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Wish", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Gyarados",
+        "type": ["Water", "Flying"],
+        "moveset": [
+          { "name": "Waterfall", "type": "Water" },
+          { "name": "Ice Fang", "type": "Ice" },
+          { "name": "Dragon Dance", "type": "Dragon" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Lanturn",
+        "type": ["Water", "Electric"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Thunderbolt", "type": "Electric" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Volt Switch", "type": "Electric" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Blue",
+    "Region": "Kanto",
+    "Pokemons": [
+      {
+        "name": "Pidgeot",
+        "type": ["Normal", "Flying"],
+        "moveset": [
+          { "name": "Brave Bird", "type": "Flying" },
+          { "name": "Return", "type": "Normal" },
+          { "name": "Roost", "type": "Flying" },
+          { "name": "U-turn", "type": "Bug" }
+        ]
+      },
+      {
+        "name": "Alakazam",
+        "type": ["Psychic"],
+        "moveset": [
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Focus Blast", "type": "Fighting" },
+          { "name": "Energy Ball", "type": "Grass" }
+        ]
+      },
+      {
+        "name": "Rhyperior",
+        "type": ["Ground", "Rock"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Megahorn", "type": "Bug" },
+          { "name": "Hammer Arm", "type": "Fighting" }
+        ]
+      },
+      {
+        "name": "Gyarados",
+        "type": ["Water", "Flying"],
+        "moveset": [
+          { "name": "Waterfall", "type": "Water" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Ice Fang", "type": "Ice" },
+          { "name": "Dragon Dance", "type": "Dragon" }
+        ]
+      },
+      {
+        "name": "Exeggutor",
+        "type": ["Grass", "Psychic"],
+        "moveset": [
+          { "name": "Wood Hammer", "type": "Grass" },
+          { "name": "Zen Headbutt", "type": "Psychic" },
+          { "name": "Leaf Storm", "type": "Grass" },
+          { "name": "Sludge Bomb", "type": "Poison" }
+        ]
+      },
+      {
+        "name": "Arcanine",
+        "type": ["Fire"],
+        "moveset": [
+          { "name": "Flare Blitz", "type": "Fire" },
+          { "name": "Extreme Speed", "type": "Normal" },
+          { "name": "Wild Charge", "type": "Electric" },
+          { "name": "Close Combat", "type": "Fighting" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Lance",
+    "Region": "Kanto",
+    "Pokemons": [
+      {
+        "name": "Dragonite",
+        "type": ["Dragon", "Flying"],
+        "moveset": [
+          { "name": "Outrage", "type": "Dragon" },
+          { "name": "Hurricane", "type": "Flying" },
+          { "name": "Extreme Speed", "type": "Normal" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Charizard",
+        "type": ["Fire", "Flying"],
+        "moveset": [
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Air Slash", "type": "Flying" },
+          { "name": "Dragon Pulse", "type": "Dragon" },
+          { "name": "Roost", "type": "Flying" }
+        ]
+      },
+      {
+        "name": "Gyarados",
+        "type": ["Water", "Flying"],
+        "moveset": [
+          { "name": "Waterfall", "type": "Water" },
+          { "name": "Ice Fang", "type": "Ice" },
+          { "name": "Dragon Dance", "type": "Dragon" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Aerodactyl",
+        "type": ["Rock", "Flying"],
+        "moveset": [
+          { "name": "Rock Slide", "type": "Rock" },
+          { "name": "Aerial Ace", "type": "Flying" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Ice Fang", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Kingdra",
+        "type": ["Water", "Dragon"],
+        "moveset": [
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Dragon Pulse", "type": "Dragon" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Flash Cannon", "type": "Steel" }
+        ]
+      },
+      {
+        "name": "Salamence",
+        "type": ["Dragon", "Flying"],
+        "moveset": [
+          { "name": "Dragon Claw", "type": "Dragon" },
+          { "name": "Fly", "type": "Flying" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Flamethrower", "type": "Fire" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Giovanni",
+    "Region": "Kanto",
+    "Pokemons": [
+      {
+        "name": "Persian",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Fake Out", "type": "Normal" },
+          { "name": "Return", "type": "Normal" },
+          { "name": "Knock Off", "type": "Dark" },
+          { "name": "U-turn", "type": "Bug" }
+        ]
+      },
+      {
+        "name": "Dugtrio",
+        "type": ["Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Sucker Punch", "type": "Dark" },
+          { "name": "Stealth Rock", "type": "Rock" }
+        ]
+      },
+      {
+        "name": "Nidoqueen",
+        "type": ["Poison", "Ground"],
+        "moveset": [
+          { "name": "Earth Power", "type": "Ground" },
+          { "name": "Sludge Wave", "type": "Poison" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Stealth Rock", "type": "Rock" }
+        ]
+      },
+      {
+        "name": "Nidoking",
+        "type": ["Poison", "Ground"],
+        "moveset": [
+          { "name": "Earth Power", "type": "Ground" },
+          { "name": "Sludge Wave", "type": "Poison" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Flamethrower", "type": "Fire" }
+        ]
+      },
+      {
+        "name": "Golem",
+        "type": ["Rock", "Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Stealth Rock", "type": "Rock" },
+          { "name": "Explosion", "type": "Normal" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Red",
+    "Region": "Kanto",
+    "Pokemons": [
+      {
+        "name": "Pikachu",
+        "type": ["Electric"],
+        "moveset": [
+          { "name": "Volt Tackle", "type": "Electric" },
+          { "name": "Thunderbolt", "type": "Electric" },
+          { "name": "Iron Tail", "type": "Steel" },
+          { "name": "Quick Attack", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Charizard",
+        "type": ["Fire", "Flying"],
+        "moveset": [
+          { "name": "Blast Burn", "type": "Fire" },
+          { "name": "Flare Blitz", "type": "Fire" },
+          { "name": "Air Slash", "type": "Flying" },
+          { "name": "Dragon Pulse", "type": "Dragon" }
+        ]
+      },
+      {
+        "name": "Blastoise",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Hydro Cannon", "type": "Water" },
+          { "name": "Surf", "type": "Water" },
+          { "name": "Blizzard", "type": "Ice" },
+          { "name": "Flash Cannon", "type": "Steel" }
+        ]
+      },
+      {
+        "name": "Venusaur",
+        "type": ["Grass", "Poison"],
+        "moveset": [
+          { "name": "Frenzy Plant", "type": "Grass" },
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Giga Drain", "type": "Grass" },
+          { "name": "Sleep Powder", "type": "Grass" }
+        ]
+      },
+      {
+        "name": "Snorlax",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Body Slam", "type": "Normal" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Blizzard", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Espeon",
+        "type": ["Psychic"],
+        "moveset": [
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Dazzling Gleam", "type": "Fairy" },
+          { "name": "Reflect", "type": "Psychic" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Whitney",
+    "Region": "Johto",
+    "Pokemons": [
+      {
+        "name": "Miltank",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Body Slam", "type": "Normal" },
+          { "name": "Rollout", "type": "Rock" },
+          { "name": "Milk Drink", "type": "Normal" },
+          { "name": "Attract", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Clefable",
+        "type": ["Fairy"],
+        "moveset": [
+          { "name": "Moonblast", "type": "Fairy" },
+          { "name": "Meteor Mash", "type": "Steel" },
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Moonlight", "type": "Fairy" }
+        ]
+      },
+      {
+        "name": "Wigglytuff",
+        "type": ["Normal", "Fairy"],
+        "moveset": [
+          { "name": "Hyper Voice", "type": "Normal" },
+          { "name": "Play Rough", "type": "Fairy" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Thunderbolt", "type": "Electric" }
+        ]
+      },
+      {
+        "name": "Blissey",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Soft-Boiled", "type": "Normal" },
+          { "name": "Toxic", "type": "Poison" },
+          { "name": "Seismic Toss", "type": "Fighting" },
+          { "name": "Ice Beam", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Tauros",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Double-Edge", "type": "Normal" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Zen Headbutt", "type": "Psychic" },
+          { "name": "Iron Head", "type": "Steel" }
+        ]
+      },
+      {
+        "name": "Ambipom",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Fake Out", "type": "Normal" },
+          { "name": "Double Hit", "type": "Normal" },
+          { "name": "U-turn", "type": "Bug" },
+          { "name": "Knock Off", "type": "Dark" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Clair",
+    "Region": "Johto",
+    "Pokemons": [
+      {
+        "name": "Kingdra",
+        "type": ["Water", "Dragon"],
+        "moveset": [
+          { "name": "Dragon Pulse", "type": "Dragon" },
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Flash Cannon", "type": "Steel" }
+        ]
+      },
+      {
+        "name": "Dragonite",
+        "type": ["Dragon", "Flying"],
+        "moveset": [
+          { "name": "Outrage", "type": "Dragon" },
+          { "name": "Fire Punch", "type": "Fire" },
+          { "name": "Thunder Punch", "type": "Electric" },
+          { "name": "Extreme Speed", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Altaria",
+        "type": ["Dragon", "Flying"],
+        "moveset": [
+          { "name": "Dragon Pulse", "type": "Dragon" },
+          { "name": "Moonblast", "type": "Fairy" },
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Roost", "type": "Flying" }
+        ]
+      },
+      {
+        "name": "Druddigon",
+        "type": ["Dragon"],
+        "moveset": [
+          { "name": "Dragon Claw", "type": "Dragon" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Superpower", "type": "Fighting" },
+          { "name": "Glare", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Salamence",
+        "type": ["Dragon", "Flying"],
+        "moveset": [
+          { "name": "Dragon Claw", "type": "Dragon" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Thunder Fang", "type": "Electric" },
+          { "name": "Aerial Ace", "type": "Flying" }
+        ]
+      },
+      {
+        "name": "Garchomp",
+        "type": ["Dragon", "Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Dragon Rush", "type": "Dragon" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Poison Jab", "type": "Poison" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Karen",
+    "Region": "Johto",
+    "Pokemons": [
+      {
+        "name": "Umbreon",
+        "type": ["Dark"],
+        "moveset": [
+          { "name": "Foul Play", "type": "Dark" },
+          { "name": "Toxic", "type": "Poison" },
+          { "name": "Moonlight", "type": "Fairy" },
+          { "name": "Protect", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Houndoom",
+        "type": ["Dark", "Fire"],
+        "moveset": [
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Dark Pulse", "type": "Dark" },
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Nasty Plot", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Honchkrow",
+        "type": ["Dark", "Flying"],
+        "moveset": [
+          { "name": "Brave Bird", "type": "Flying" },
+          { "name": "Sucker Punch", "type": "Dark" },
+          { "name": "Night Slash", "type": "Dark" },
+          { "name": "Roost", "type": "Flying" }
+        ]
+      },
+      {
+        "name": "Weavile",
+        "type": ["Dark", "Ice"],
+        "moveset": [
+          { "name": "Night Slash", "type": "Dark" },
+          { "name": "Ice Punch", "type": "Ice" },
+          { "name": "Ice Shard", "type": "Ice" },
+          { "name": "Brick Break", "type": "Fighting" }
+        ]
+      },
+      {
+        "name": "Absol",
+        "type": ["Dark"],
+        "moveset": [
+          { "name": "Night Slash", "type": "Dark" },
+          { "name": "Psycho Cut", "type": "Psychic" },
+          { "name": "Play Rough", "type": "Fairy" },
+          { "name": "Swords Dance", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Spiritomb",
+        "type": ["Ghost", "Dark"],
+        "moveset": [
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Dark Pulse", "type": "Dark" },
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Will-O-Wisp", "type": "Fire" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Ethan",
+    "Region": "Johto",
+    "Pokemons": [
+      {
+        "name": "Typhlosion",
+        "type": ["Fire"],
+        "moveset": [
+          { "name": "Eruption", "type": "Fire" },
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Focus Blast", "type": "Fighting" },
+          { "name": "Extrasensory", "type": "Psychic" }
+        ]
+      },
+      {
+        "name": "Sunflora",
+        "type": ["Grass"],
+        "moveset": [
+          { "name": "Solar Beam", "type": "Grass" },
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Earth Power", "type": "Ground" },
+          { "name": "Sunny Day", "type": "Fire" }
+        ]
+      },
+      {
+        "name": "Politoed",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Focus Blast", "type": "Fighting" },
+          { "name": "Hypnosis", "type": "Psychic" }
+        ]
+      },
+      {
+        "name": "Sudowoodo",
+        "type": ["Rock"],
+        "moveset": [
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Wood Hammer", "type": "Grass" },
+          { "name": "Sucker Punch", "type": "Dark" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Togekiss",
+        "type": ["Fairy", "Flying"],
+        "moveset": [
+          { "name": "Air Slash", "type": "Flying" },
+          { "name": "Dazzling Gleam", "type": "Fairy" },
+          { "name": "Aura Sphere", "type": "Fighting" },
+          { "name": "Flamethrower", "type": "Fire" }
+        ]
+      },
+      {
+        "name": "Mantine",
+        "type": ["Water", "Flying"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Air Slash", "type": "Flying" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Roost", "type": "Flying" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Norman",
+    "Region": "Hoenn",
+    "Pokemons": [
+      {
+        "name": "Slaking",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Retaliate", "type": "Normal" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Hammer Arm", "type": "Fighting" },
+          { "name": "Play Rough", "type": "Fairy" }
+        ]
+      },
+      {
+        "name": "Exploud",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Boomburst", "type": "Normal" },
+          { "name": "Fire Blast", "type": "Fire" },
+          { "name": "Surf", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Staraptor",
+        "type": ["Normal", "Flying"],
+        "moveset": [
+          { "name": "Brave Bird", "type": "Flying" },
+          { "name": "Close Combat", "type": "Fighting" },
+          { "name": "U-turn", "type": "Bug" },
+          { "name": "Quick Attack", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Sawsbuck",
+        "type": ["Normal", "Grass"],
+        "moveset": [
+          { "name": "Horn Leech", "type": "Grass" },
+          { "name": "Return", "type": "Normal" },
+          { "name": "Jump Kick", "type": "Fighting" },
+          { "name": "Megahorn", "type": "Bug" }
+        ]
+      },
+      {
+        "name": "Bouffalant",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Head Charge", "type": "Normal" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Megahorn", "type": "Bug" },
+          { "name": "Stone Edge", "type": "Rock" }
+        ]
+      },
+      {
+        "name": "Zangoose",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Crush Claw", "type": "Normal" },
+          { "name": "Close Combat", "type": "Fighting" },
+          { "name": "Night Slash", "type": "Dark" },
+          { "name": "X-Scissor", "type": "Bug" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Wallace",
+    "Region": "Hoenn",
+    "Pokemons": [
+      {
+        "name": "Milotic",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Recover", "type": "Normal" },
+          { "name": "Toxic", "type": "Poison" }
+        ]
+      },
+      {
+        "name": "Ludicolo",
+        "type": ["Water", "Grass"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Energy Ball", "type": "Grass" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Fake Out", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Tentacruel",
+        "type": ["Water", "Poison"],
+        "moveset": [
+          { "name": "Sludge Wave", "type": "Poison" },
+          { "name": "Scald", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Dazzling Gleam", "type": "Fairy" }
+        ]
+      },
+      {
+        "name": "Whiscash",
+        "type": ["Water", "Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Muddy Water", "type": "Water" },
+          { "name": "Zen Headbutt", "type": "Psychic" },
+          { "name": "Stone Edge", "type": "Rock" }
+        ]
+      },
+      {
+        "name": "Walrein",
+        "type": ["Ice", "Water"],
+        "moveset": [
+          { "name": "Blizzard", "type": "Ice" },
+          { "name": "Surf", "type": "Water" },
+          { "name": "Body Slam", "type": "Normal" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Gyarados",
+        "type": ["Water", "Flying"],
+        "moveset": [
+          { "name": "Waterfall", "type": "Water" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Ice Fang", "type": "Ice" },
+          { "name": "Dragon Dance", "type": "Dragon" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Steven Stone",
+    "Region": "Hoenn",
+    "Pokemons": [
+      {
+        "name": "Skarmory",
+        "type": ["Steel", "Flying"],
+        "moveset": [
+          { "name": "Brave Bird", "type": "Flying" },
+          { "name": "Steel Wing", "type": "Steel" },
+          { "name": "Spikes", "type": "Ground" },
+          { "name": "Roost", "type": "Flying" }
+        ]
+      },
+      {
+        "name": "Claydol",
+        "type": ["Ground", "Psychic"],
+        "moveset": [
+          { "name": "Earth Power", "type": "Ground" },
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Light Screen", "type": "Psychic" }
+        ]
+      },
+      {
+        "name": "Aggron",
+        "type": ["Steel", "Rock"],
+        "moveset": [
+          { "name": "Heavy Slam", "type": "Steel" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Avalanche", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Cradily",
+        "type": ["Rock", "Grass"],
+        "moveset": [
+          { "name": "Giga Drain", "type": "Grass" },
+          { "name": "Ancient Power", "type": "Rock" },
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Recover", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Armaldo",
+        "type": ["Rock", "Bug"],
+        "moveset": [
+          { "name": "X-Scissor", "type": "Bug" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Aqua Tail", "type": "Water" }
+        ]
+      },
+      {
+        "name": "Metagross",
+        "type": ["Steel", "Psychic"],
+        "moveset": [
+          { "name": "Meteor Mash", "type": "Steel" },
+          { "name": "Zen Headbutt", "type": "Psychic" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Bullet Punch", "type": "Steel" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Brendan",
+    "Region": "Hoenn",
+    "Pokemons": [
+      {
+        "name": "Swampert",
+        "type": ["Water", "Ground"],
+        "moveset": [
+          { "name": "Muddy Water", "type": "Water" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Ice Punch", "type": "Ice" },
+          { "name": "Hammer Arm", "type": "Fighting" }
+        ]
+      },
+      {
+        "name": "Mightyena",
+        "type": ["Dark"],
+        "moveset": [
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Play Rough", "type": "Fairy" },
+          { "name": "Sucker Punch", "type": "Dark" },
+          { "name": "Ice Fang", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Delcatty",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Double-Edge", "type": "Normal" },
+          { "name": "Play Rough", "type": "Fairy" },
+          { "name": "Zen Headbutt", "type": "Psychic" },
+          { "name": "Sucker Punch", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Castform",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Weather Ball", "type": "Normal" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Thunderbolt", "type": "Electric" }
+        ]
+      },
+      {
+        "name": "Gardevoir",
+        "type": ["Psychic", "Fairy"],
+        "moveset": [
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Moonblast", "type": "Fairy" },
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Thunderbolt", "type": "Electric" }
+        ]
+      },
+      {
+        "name": "Milotic",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Recover", "type": "Normal" },
+          { "name": "Mirror Coat", "type": "Psychic" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Volkner",
+    "Region": "Sinnoh",
+    "Pokemons": [
+      {
+        "name": "Pelipper",
+        "type": ["Water", "Flying"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Hurricane", "type": "Flying" },
+          { "name": "Roost", "type": "Flying" },
+          { "name": "U-turn", "type": "Bug" }
+        ]
+      },
+      {
+        "name": "Raichu",
+        "type": ["Electric"],
+        "moveset": [
+          { "name": "Thunderbolt", "type": "Electric" },
+          { "name": "Focus Blast", "type": "Fighting" },
+          { "name": "Surf", "type": "Water" },
+          { "name": "Volt Switch", "type": "Electric" }
+        ]
+      },
+      {
+        "name": "Luxray",
+        "type": ["Electric"],
+        "moveset": [
+          { "name": "Wild Charge", "type": "Electric" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Ice Fang", "type": "Ice" },
+          { "name": "Play Rough", "type": "Fairy" }
+        ]
+      },
+      {
+        "name": "Lanturn",
+        "type": ["Water", "Electric"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Thunderbolt", "type": "Electric" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Dazzling Gleam", "type": "Fairy" }
+        ]
+      },
+      {
+        "name": "Electivire",
+        "type": ["Electric"],
+        "moveset": [
+          { "name": "Thunder Punch", "type": "Electric" },
+          { "name": "Ice Punch", "type": "Ice" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Cross Chop", "type": "Fighting" }
+        ]
+      },
+      {
+        "name": "Rotom-Wash",
+        "type": ["Electric", "Water"],
+        "moveset": [
+          { "name": "Hydro Pump", "type": "Water" },
+          { "name": "Thunderbolt", "type": "Electric" },
+          { "name": "Will-O-Wisp", "type": "Fire" },
+          { "name": "Hex", "type": "Ghost" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Flint",
+    "Region": "Sinnoh",
+    "Pokemons": [
+      {
+        "name": "Infernape",
+        "type": ["Fire", "Fighting"],
+        "moveset": [
+          { "name": "Flare Blitz", "type": "Fire" },
+          { "name": "Close Combat", "type": "Fighting" },
+          { "name": "Thunder Punch", "type": "Electric" },
+          { "name": "Mach Punch", "type": "Fighting" }
+        ]
+      },
+      {
+        "name": "Rapidash",
+        "type": ["Fire"],
+        "moveset": [
+          { "name": "Flare Blitz", "type": "Fire" },
+          { "name": "High Horsepower", "type": "Ground" },
+          { "name": "Wild Charge", "type": "Electric" },
+          { "name": "Megahorn", "type": "Bug" }
+        ]
+      },
+      {
+        "name": "Houndoom",
+        "type": ["Dark", "Fire"],
+        "moveset": [
+          { "name": "Flamethrower", "type": "Fire" },
+          { "name": "Dark Pulse", "type": "Dark" },
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Destiny Bond", "type": "Ghost" }
+        ]
+      },
+      {
+        "name": "Flareon",
+        "type": ["Fire"],
+        "moveset": [
+          { "name": "Flare Blitz", "type": "Fire" },
+          { "name": "Superpower", "type": "Fighting" },
+          { "name": "Quick Attack", "type": "Normal" },
+          { "name": "Bite", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Magmortar",
+        "type": ["Fire"],
+        "moveset": [
+          { "name": "Fire Blast", "type": "Fire" },
+          { "name": "Thunderbolt", "type": "Electric" },
+          { "name": "Focus Blast", "type": "Fighting" },
+          { "name": "Psychic", "type": "Psychic" }
+        ]
+      },
+      {
+        "name": "Arcanine",
+        "type": ["Fire"],
+        "moveset": [
+          { "name": "Flare Blitz", "type": "Fire" },
+          { "name": "Extreme Speed", "type": "Normal" },
+          { "name": "Wild Charge", "type": "Electric" },
+          { "name": "Crunch", "type": "Dark" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Cynthia",
+    "Region": "Sinnoh",
+    "Pokemons": [
+      {
+        "name": "Spiritomb",
+        "type": ["Ghost", "Dark"],
+        "moveset": [
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Dark Pulse", "type": "Dark" },
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Sucker Punch", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Roserade",
+        "type": ["Grass", "Poison"],
+        "moveset": [
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Energy Ball", "type": "Grass" },
+          { "name": "Shadow Ball", "type": "Ghost" },
+          { "name": "Dazzling Gleam", "type": "Fairy" }
+        ]
+      },
+      {
+        "name": "Gastrodon",
+        "type": ["Water", "Ground"],
+        "moveset": [
+          { "name": "Muddy Water", "type": "Water" },
+          { "name": "Earth Power", "type": "Ground" },
+          { "name": "Sludge Bomb", "type": "Poison" },
+          { "name": "Ice Beam", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Lucario",
+        "type": ["Fighting", "Steel"],
+        "moveset": [
+          { "name": "Aura Sphere", "type": "Fighting" },
+          { "name": "Flash Cannon", "type": "Steel" },
+          { "name": "Psychic", "type": "Psychic" },
+          { "name": "Dragon Pulse", "type": "Dragon" }
+        ]
+      },
+      {
+        "name": "Milotic",
+        "type": ["Water"],
+        "moveset": [
+          { "name": "Surf", "type": "Water" },
+          { "name": "Ice Beam", "type": "Ice" },
+          { "name": "Mirror Coat", "type": "Psychic" },
+          { "name": "Recover", "type": "Normal" }
+        ]
+      },
+      {
+        "name": "Garchomp",
+        "type": ["Dragon", "Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Dragon Rush", "type": "Dragon" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Poison Jab", "type": "Poison" }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "Lucas",
+    "Region": "Sinnoh",
+    "Pokemons": [
+      {
+        "name": "Torterra",
+        "type": ["Grass", "Ground"],
+        "moveset": [
+          { "name": "Wood Hammer", "type": "Grass" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Crunch", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Bastiodon",
+        "type": ["Rock", "Steel"],
+        "moveset": [
+          { "name": "Iron Head", "type": "Steel" },
+          { "name": "Stone Edge", "type": "Rock" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Avalanche", "type": "Ice" }
+        ]
+      },
+      {
+        "name": "Snorlax",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Body Slam", "type": "Normal" },
+          { "name": "Crunch", "type": "Dark" },
+          { "name": "Heavy Slam", "type": "Steel" },
+          { "name": "Earthquake", "type": "Ground" }
+        ]
+      },
+      {
+        "name": "Lickilicky",
+        "type": ["Normal"],
+        "moveset": [
+          { "name": "Power Whip", "type": "Grass" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Body Slam", "type": "Normal" },
+          { "name": "Knock Off", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Mamoswine",
+        "type": ["Ice", "Ground"],
+        "moveset": [
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Icicle Crash", "type": "Ice" },
+          { "name": "Ice Shard", "type": "Ice" },
+          { "name": "Knock Off", "type": "Dark" }
+        ]
+      },
+      {
+        "name": "Rampardos",
+        "type": ["Rock"],
+        "moveset": [
+          { "name": "Head Smash", "type": "Rock" },
+          { "name": "Earthquake", "type": "Ground" },
+          { "name": "Zen Headbutt", "type": "Psychic" },
+          { "name": "Crunch", "type": "Dark" }
+        ]
+      }
+    ]
+  }
+]
