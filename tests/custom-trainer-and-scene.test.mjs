@@ -39,12 +39,12 @@ test('AboutTab renders non-commercial notice, inspiration links, and GitHub inte
   const { AboutTab, GITHUB_REPO_URL, POKEMON_BATTLEGROUNDS_URL, renderGithubLink } = await import('../src/ui/AboutTab.ts')
 
   // Check constant links
-  assert.equal(GITHUB_REPO_URL, 'https://github.com/GFV-dev/Poke-Battle')
+  assert.equal(GITHUB_REPO_URL, 'https://github.com/GustavoGFV/PokeBattle')
   assert.equal(POKEMON_BATTLEGROUNDS_URL, 'https://pokemonbattlegrounds.com')
 
   // Test renderGithubLink output
   const linkHtml = renderGithubLink()
-  assert.ok(linkHtml.includes('https://github.com/GFV-dev/Poke-Battle'))
+  assert.ok(linkHtml.includes('https://github.com/GustavoGFV/PokeBattle'))
   assert.ok(linkHtml.includes('The full project here'))
   assert.ok(linkHtml.includes('<svg'))
 

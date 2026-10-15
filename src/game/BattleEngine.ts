@@ -195,7 +195,7 @@ export class BattleEngine {
           const call = effectiveness > 1 ? ' Super effective!' : effectiveness < 1 ? ' Resisted hit.' : ''
           const critCall = isCritical ? ' Critical strike!' : ''
           this.addLog(`${attackerPokemon.name} used ${move.name}; ${damage} damage.${call}${critCall}`, team.side)
-          this.state.lastImpact = { side: defenderTeam.side, at: this.state.elapsedMs, healing: false, color: moveColor }
+          this.state.lastImpact = { side: defenderTeam.side, at: this.state.elapsedMs, healing: false, color: moveColor, type: move.type, critical: isCritical }
           this.state.damageNumbers.push({ id: nextDamageNumberId++, value: damage, x: defender.x, y: defender.y - 28, isCritical, elapsedMs: 0, durationMs: 820 })
 
           const knockbackScale = move.knockbackScale ?? 1

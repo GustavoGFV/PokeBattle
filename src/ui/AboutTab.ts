@@ -4,8 +4,9 @@
  */
 
 import { t } from '../utils/i18n.ts'
+import { GITHUB_REPO_URL } from '../data/constants.ts'
 
-export const GITHUB_REPO_URL = 'https://github.com/GFV-dev/Poke-Battle'
+export { GITHUB_REPO_URL }
 export const POKEMON_BATTLEGROUNDS_URL = 'https://pokemonbattlegrounds.com'
 
 /**

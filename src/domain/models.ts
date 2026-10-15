@@ -215,7 +215,7 @@ export interface BattleState {
   teams: Record<Side, TeamState>
   winner: Side | 'draw' | null
   log: BattleLogEntry[]
-  lastImpact: { side: Side; at: number; healing: boolean; color?: string } | null
+  lastImpact: { side: Side; at: number; healing: boolean; color?: string; type?: ElementType; critical?: boolean } | null
   attackAnimations: AttackAnimation[]
   damageNumbers: DamageNumber[]
 }

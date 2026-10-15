@@ -47,6 +47,18 @@ Each move has a finite use count and may define `power`, `healing`, `effect`, `r
 
 A creature's `type` is its primary type; optional `secondaryType` adds a second defensive multiplier. `getTypeMultiplier` multiplies effectiveness across defending types. Thus weakness × weakness is 4×, weakness × resistance is 1×, double resistance is 0.25×, and any immunity makes the result 0×. `calculateDamage` preserves immunity as zero instead of applying the minimum damage floor.
 
+## Menu Screens and Localization
+
+`MenuController` owns four tabs (trainers, about, credits, updates). Static text goes through `t()` from `src/utils/i18n.ts`; add keys to `language-en.ts` and `language-pt.ts` (a missing Portuguese key fails `tsc`). Release notes live in `src/data/updates.ts` and contributors in `src/data/contributors.ts`.
+
+## Sound Effects
+
+`src/game/sfx.ts` synthesizes per-type hit blips (`HIT_PROFILES`) and the summon/start/victory/defeat cues (`CUES`) with WebAudio. `BattleEngine` stores `type` and `critical` on `state.lastImpact`; `main.ts` `playBattleSounds` plays each cue once per phase/impact change. It is separate from the music player and does nothing if WebAudio is unavailable.
+
+## Future Releases
+
+`UpdatesTab` fetches `future-releases.json` (repo root, `main` branch, via raw.githubusercontent.com) through `src/data/futureReleases.ts`. Keep the file valid JSON; items missing a `title` are skipped.
+
 ## Add Content
 
 ### Creature

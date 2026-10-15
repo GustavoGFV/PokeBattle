@@ -1,0 +1,12 @@
+{
+  "items": [
+    {
+      "title": { "en": "More trainers and regions", "pt": "Mais treinadores e regiões" },
+      "description": {
+        "en": "New trainers with full rosters are planned.",
+        "pt": "Novos treinadores com times completos estão planejados."
+      },
+      "eta": "TBD"
+    }
+  ]
+}

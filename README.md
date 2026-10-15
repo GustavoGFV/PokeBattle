@@ -1,5 +1,9 @@
 # Poké Battle (Field Circuit)
 
+## 🎮 Play it Here: [gustavogfv.github.io/PokeBattle](https://gustavogfv.github.io/PokeBattle/)
+
+[![Play](https://img.shields.io/badge/▶_Play_it_Here-gustavogfv.github.io%2FPokeBattle-e53e3e?style=for-the-badge)](https://gustavogfv.github.io/PokeBattle/)
+
 > **A fast, lightweight, browser-based Pokémon battle simulator and team builder built with modern TypeScript and Vite.**  
 > Features autonomous 6-on-6 Pokémon duels, authentic 32-bit chiptune audio synthesizers, customizable trainer rosters, shiny mechanics, dynamic dodge physics, local persistence, and real-time canvas rendering.
 
@@ -21,7 +25,7 @@ This project is directly inspired by the brilliant **Pokémon Battleground** vid
 This web application is in active, continuous development! New Pokémon, balance adjustments, shiny mechanics, sound improvements, and arena themes are being added regularly.
 
 Because this is a **100% open-source project**, the community is warmly invited to participate! Whether you would like to contribute new Pokémon sprites, enhance combat math, fix bugs, or build new features, your contributions are welcome:
-- 🔗 **GitHub Repository**: [The full project here](https://github.com/GFV-dev/Poke-Battle)
+- 🔗 **GitHub Repository**: [The full project here](https://github.com/GustavoGFV/PokeBattle)
 - 🤝 **Pull Requests (PRs)** and issues are openly reviewed and appreciated.
 
 ---
@@ -66,6 +70,19 @@ Because this is a **100% open-source project**, the community is warmly invited 
 - **Decluttered Vertically Scrollable Combat Log**: Cleaned up log container with `overflow-y` scrolling for reviewing complete battle action history under **Action Field Calls**.
 - **32-Bit Web Audio Synthesizer**: Authentic chiptune music engine (FireRed, Emerald, Diamond, Pearl themes) with randomized track selection, persistent volume memory (`poke_music_vol`), and floating audio dock.
 
+### 🔊 Procedural Sound Effects
+- All effects are synthesized with WebAudio in `src/game/sfx.ts` (no audio files, independent of the music player). Each damaging hit plays a per-type blip (`HIT_PROFILES`, critical hits slightly louder). Short cues cover the Pokémon summon, battle start, and the **Victory** / **Defeat** jingles (`CUES`; draws are silent).
+- `BattleEngine` records the move `type`/`critical` flag in `state.lastImpact`; `main.ts` (`playBattleSounds`) derives phase changes and plays each cue once.
+
+### 🚀 Future Release (remote roadmap)
+- The **Updates & More** screen fetches `future-releases.json` from the repository's `main` branch on GitHub (`src/data/futureReleases.ts`), so the roadmap can be edited directly on GitHub with no rebuild. Format: `{ "items": [{ "title": {"en": "...", "pt": "..."}, "description": {...}, "eta": "2026-12" }] }` (text may also be a plain string). Offline or on error the card shows a friendly message.
+
+### 🧭 Menu Navigation & Screens
+- The menu tab bar has **Battle Circuit**, **About Project**, **Credits** and **Updates & More** (`MenuController`, `AboutTab`, `CreditsTab`, `UpdatesTab`). Info tabs re-render on every visit, so they follow the language.
+- **Credits** lists the developer, asset sources and a **Contributors** section driven by `src/data/contributors.ts` (add yourself via pull request).
+- **Updates & More** shows patch notes from `src/data/updates.ts` (newest first; add the text keys to both language files).
+- Switching language keeps an open dialog open.
+
 ### 🌐 Localization (English / Português)
 - A flag dropdown in the header switches the UI between **English** (default) and **Portuguese (Brazil)** instantly.
 - Dictionaries live in `src/utils/`: `language-en.ts` (source of truth, defines every key), `language-pt.ts` (typed so a missing key fails `tsc`) and `i18n.ts` (`t(key, params)`, `setLanguage`, `applyTranslations`). Portuguese is loaded lazily on first selection.
@@ -102,6 +119,8 @@ flowchart TD
     subgraph UIViews ["UI Presentation"]
         MenuController["src/ui/MenuController.ts<br/>(Roster Desk & Navigation)"]
         AboutTab["src/ui/AboutTab.ts<br/>(About Project View & Links)"]
+        CreditsTab["src/ui/CreditsTab.ts<br/>(Credits View)"]
+        UpdatesTab["src/ui/UpdatesTab.ts<br/>(Patch notes from src/data/updates.ts)"]
         ArenaRenderer["src/ui/ArenaRenderer.ts<br/>(Canvas 2D Dual Battlers & Attacks)"]
         MusicController["src/ui/MusicController.ts<br/>(Track Controls & Audio HUD)"]
         Main["src/main.ts (App Orchestrator)"]
@@ -115,6 +134,8 @@ flowchart TD
     TrainersData --> MenuController
     TrainerPatterns --> MenuController
     MenuController --> AboutTab
+    MenuController --> CreditsTab
+    MenuController --> UpdatesTab
     LocalStorage <--> MenuController
     LocalStorage <--> Main
     SessionStorage <--> Main
@@ -154,7 +175,7 @@ All game data is statically declared and bundled using Vite:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/GFV-dev/Poke-Battle.git
+   git clone https://github.com/GustavoGFV/PokeBattle.git
    cd PokeBattle
    ```
 
@@ -226,7 +247,7 @@ We warmly welcome Pull Requests! Here is how you can easily extend the game:
    npm test
    npm run build
    ```
-4. Push your branch and open a Pull Request at [github.com/GFV-dev/Poke-Battle](https://github.com/GFV-dev/Poke-Battle).
+4. Push your branch and open a Pull Request at [github.com/GustavoGFV/PokeBattle](https://github.com/GustavoGFV/PokeBattle).
 
 ---
 

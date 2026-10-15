@@ -5,6 +5,14 @@ import { POKEMONS } from './data/pokemons.ts'
 import { TRAINERS } from './data/trainers.ts'
 import { getCreatureTypes, TYPE_CHART } from './data/types.ts'
 import { BattleEngine, type BattleSetup } from './game/BattleEngine.ts'
+import { SfxPlayer } from './game/sfx.ts'
+import type { BattleState, Side } from './domain/models.ts'
+import { TRAINER_ARRIVAL_MS } from './game/arena.ts'
+import { GITHUB_REPO_URL } from './data/constants.ts'
+
+document.querySelectorAll<HTMLAnchorElement>('a[data-github="repo"]').forEach((a) => {
+  a.href = GITHUB_REPO_URL
+})
 import { loadScore, recordResult } from './game/score.ts'
 import { ArenaRenderer, type ArenaTheme } from './ui/ArenaRenderer.ts'
 import { MenuController } from './ui/MenuController.ts'
@@ -113,6 +121,49 @@ const music = new MusicController(document.querySelector<HTMLElement>('#music-ro
 const canvas = document.querySelector<HTMLCanvasElement>('#arena')!
 const renderer = new ArenaRenderer(canvas)
 let engine = new BattleEngine()
+const sfx = new SfxPlayer()
+let lastSoundImpact: BattleState['lastImpact'] = null
+let soundState: BattleState | null = null
+let soundPhase: BattleState['phase'] | null = null
+let summonCuePlayed = false
+const soundActive: Partial<Record<Side, unknown>> = {}
+
+function playBattleSounds(state: BattleState): void {
+  if (state !== soundState) {
+    soundState = state
+    soundPhase = state.phase
+    summonCuePlayed = false
+    lastSoundImpact = state.lastImpact
+    soundActive.sun = state.teams.sun.active
+    soundActive.moon = state.teams.moon.active
+  }
+  const phase = state.phase
+
+  if (phase === 'entrance' && !summonCuePlayed && state.introElapsedMs >= TRAINER_ARRIVAL_MS) {
+    summonCuePlayed = true
+    sfx.playCue('summon')
+  }
+  if (phase === 'running' && soundPhase === 'entrance') sfx.playCue('start')
+  if (phase === 'ended' && soundPhase !== 'ended') {
+    if (state.winner === 'sun') sfx.playCue('victory')
+    else if (state.winner === 'moon') sfx.playCue('defeat')
+  }
+  soundPhase = phase
+
+  for (const side of ['sun', 'moon'] as const) {
+    const active = state.teams[side].active
+    if (active !== soundActive[side]) {
+      soundActive[side] = active
+      if (phase === 'running') sfx.playCue('summon')
+    }
+  }
+
+  const impact = state.lastImpact
+  if (impact && impact !== lastSoundImpact) {
+    lastSoundImpact = impact
+    if (!impact.healing && impact.type) sfx.play(impact.type, impact.critical)
+  }
+}
 const battleButton = document.querySelector<HTMLButtonElement>('#battle-button')!
 const continueButton = document.querySelector<HTMLButtonElement>('#continue-button')!
 const endReturnButton = document.querySelector<HTMLButtonElement>('#end-return-button')!
@@ -493,6 +544,7 @@ function animate(now: number): void {
   }
 
   renderer.render(engine.state, now)
+  playBattleSounds(engine.state)
   requestAnimationFrame(animate)
 }
 

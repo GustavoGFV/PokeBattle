@@ -9,6 +9,11 @@ import { loadSavedCustomTrainers, saveCustomTrainer, deleteCustomTrainer } from 
 import { getTrainerPatternType } from '../domain/trainerPatterns.ts'
 import { loadScore } from '../game/score.ts'
 import { AboutTab } from './AboutTab.ts'
+import { CreditsTab } from './CreditsTab.ts'
+import { UpdatesTab } from './UpdatesTab.ts'
+
+const MENU_TABS = ['trainers', 'about', 'credits', 'updates'] as const
+type MenuTab = (typeof MENU_TABS)[number]
 import { t } from '../utils/i18n.ts'
 
 interface AppearanceOption {
@@ -155,7 +160,7 @@ export class MenuController {
   private pokemonRegionFilter = 'all'
 
   // Navigation tab state
-  private activeMenuTab: 'trainers' | 'about' = 'trainers'
+  private activeMenuTab: MenuTab = 'trainers'
   private eventsBound = false
 
   constructor(
@@ -237,6 +242,14 @@ export class MenuController {
             <span class="tab-badge" aria-hidden="true">ℹ️</span>
             <span>${t('menu.tabAbout')}</span>
           </button>
+          <button type="button" class="menu-tab-btn ${this.activeMenuTab === 'credits' ? 'is-active' : ''}" role="tab" aria-selected="${this.activeMenuTab === 'credits'}" data-menu-tab="credits">
+            <span class="tab-badge" aria-hidden="true">🏅</span>
+            <span>${t('menu.tabCredits')}</span>
+          </button>
+          <button type="button" class="menu-tab-btn ${this.activeMenuTab === 'updates' ? 'is-active' : ''}" role="tab" aria-selected="${this.activeMenuTab === 'updates'}" data-menu-tab="updates">
+            <span class="tab-badge" aria-hidden="true">📰</span>
+            <span>${t('menu.tabUpdates')}</span>
+          </button>
         </nav>
 
         <!-- Tab 1: Battle Circuit / Trainer Roster -->
@@ -277,6 +290,16 @@ export class MenuController {
         <div class="menu-tab-panel" id="about-tab-panel" ${this.activeMenuTab !== 'about' ? 'hidden' : ''}>
           <div id="about-tab-mount"></div>
         </div>
+
+        <!-- Tab 3: Credits -->
+        <div class="menu-tab-panel" id="credits-tab-panel" ${this.activeMenuTab !== 'credits' ? 'hidden' : ''}>
+          <div id="credits-tab-mount"></div>
+        </div>
+
+        <!-- Tab 4: Updates & More -->
+        <div class="menu-tab-panel" id="updates-tab-panel" ${this.activeMenuTab !== 'updates' ? 'hidden' : ''}>
+          <div id="updates-tab-mount"></div>
+        </div>
       </section>
       <div class="modal-root" id="modal-root" hidden></div>
     `
@@ -284,19 +307,29 @@ export class MenuController {
     if (this.activeMenuTab === 'trainers') {
       this.renderTrainers()
     } else {
-      const mount = this.root.querySelector<HTMLElement>('#about-tab-mount')
-      if (mount) {
-        new AboutTab(mount).render()
-      }
+      this.mountInfoTab(this.activeMenuTab)
     }
 
     this.bindEvents()
+
+    // Re-render keeps an open dialog (e.g. after a language switch).
+    if (document.body.classList.contains('modal-open')) {
+      this.renderDialog()
+      this.root.querySelector<HTMLElement>('#modal-root')!.hidden = false
+    }
   }
 
-  public switchMenuTab(tab: 'trainers' | 'about'): void {
+  // Info tabs are rendered on demand so they always reflect the current language.
+  private mountInfoTab(tab: Exclude<MenuTab, 'trainers'>): void {
+    const mount = this.root.querySelector<HTMLElement>(`#${tab}-tab-mount`)
+    if (!mount) return
+    if (tab === 'about') new AboutTab(mount).render()
+    else if (tab === 'credits') new CreditsTab(mount).render()
+    else new UpdatesTab(mount).render()
+  }
+
+  public switchMenuTab(tab: MenuTab): void {
     this.activeMenuTab = tab
-    const trainersPanel = this.root.querySelector<HTMLElement>('#trainers-tab-panel')
-    const aboutPanel = this.root.querySelector<HTMLElement>('#about-tab-panel')
     const tabBtns = this.root.querySelectorAll<HTMLButtonElement>('[data-menu-tab]')
 
     tabBtns.forEach((btn) => {
@@ -305,19 +338,12 @@ export class MenuController {
       btn.setAttribute('aria-selected', String(isSelected))
     })
 
-    if (trainersPanel) {
-      trainersPanel.hidden = tab !== 'trainers'
-      if (tab === 'trainers') this.renderTrainers()
+    for (const name of MENU_TABS) {
+      const panel = this.root.querySelector<HTMLElement>(`#${name === 'trainers' ? 'trainers' : name}-tab-panel`)
+      if (panel) panel.hidden = name !== tab
     }
-    if (aboutPanel) {
-      aboutPanel.hidden = tab !== 'about'
-      if (tab === 'about') {
-        const mount = aboutPanel.querySelector<HTMLElement>('#about-tab-mount')
-        if (mount) {
-          new AboutTab(mount).render()
-        }
-      }
-    }
+    if (tab === 'trainers') this.renderTrainers()
+    else this.mountInfoTab(tab)
   }
 
   private bindEvents(): void {
@@ -340,7 +366,7 @@ export class MenuController {
     if (!(target instanceof Element)) return
     const menuTabBtn = target.closest<HTMLButtonElement>('[data-menu-tab]')
     if (menuTabBtn) {
-      const tab = menuTabBtn.dataset.menuTab as 'trainers' | 'about'
+      const tab = menuTabBtn.dataset.menuTab as MenuTab
       if (tab && tab !== this.activeMenuTab) {
         this.switchMenuTab(tab)
       }
