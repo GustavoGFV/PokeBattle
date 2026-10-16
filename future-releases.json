@@ -5,6 +5,11 @@
       "description": {
         "en": "New trainers with full rosters are planned.",
         "pt": "Novos treinadores com times completos estão planejados."
+      },      
+      "title": { "en": "Story Mode", "pt": "Modo Carreira" },
+      "description": {
+        "en": "Build your team and battle against the most memorable trainers, until you become the champion or lose and start again.",
+        "pt": "Faça seu time, batalhe contra treinadores memoraveis, ate que se torne o campeão ou perca e começe novamente."
       },
       "eta": "TBD"
     }
